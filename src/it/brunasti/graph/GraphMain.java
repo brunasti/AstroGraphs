@@ -11,7 +11,7 @@ public class GraphMain extends JFrame {
     final static int CY = 400;
 
     public GraphMain() {
-        super("Rectangles Drawing Demo");
+        super("Multi dimensional gravitational fields");
 
         getContentPane().setBackground(Color.BLACK);
         setSize(CX*2, CY*2);
@@ -40,27 +40,34 @@ public class GraphMain extends JFrame {
 
     void drawGrid(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
         g.setColor(Color.white);
 
-        g2d.draw(new Rectangle2D.Float(5, 25, CX*2-15, CY*2-30));
+        g2d.draw(new Rectangle2D.Float(5, 25, CX * 2 - 15, CY * 2 - 30));
 
-        g.drawLine(0, CY, CX*2, CY);
-        g.drawLine(CX, 0, CX, CY*2);
+        g.drawLine(0, CY, CX * 2, CY);
+        g.drawLine(CX, 0, CX, CY * 2);
 
         Shape theCircle = new Ellipse2D.Double(CX - Y, CY - Y, 2.0 * Y, 2.0 * Y);
         g2d.draw(theCircle);
+
+        g.drawString("K : " + k, 10, 40);
+        g.drawString("Vx: " + Vx, 10, 55);
+        g.drawString("Vy: " + Vy, 10, 70);
+        g.drawString("L : " + loops, 10, 85);
     }
 
     // Equilibrio - around
-    double k = 0.0001;
+    double k = 0.001;
     double m = 0.0001;
     double sun = 1;
 
     double X = 0;
     double Y = 300;
-    double Vx = 0.00000575;
+    double Vx = 0.000015;
     double Vy = 0;
-    int loops = 950000000;
+    int loops = 450000000;
 
 //    // Nice 003 - around
 //    double k = 0.001;
@@ -335,10 +342,10 @@ public class GraphMain extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         drawGrid(g);
-//        g.setColor(Color.blue);
-//        drawOrbit(g,1);
-//        g.setColor(Color.green);
-//        drawOrbit(g,2);
+        g.setColor(Color.blue);
+        drawOrbit(g,1);
+        g.setColor(Color.green);
+        drawOrbit(g,2);
         g.setColor(Color.yellow);
         drawOrbit(g,3);
         g.setColor(Color.orange);

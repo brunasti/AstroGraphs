@@ -60,48 +60,9 @@ public class GraphMain extends JFrame {
 
     double X = 0;
     double Y = 300;
-    double Vx = 0.0001225;
+    double Vx = 0.00015;
     double Vy = 0;
     int loops = 350000000;
-
-//    // Nice 003 - around
-//    double k = 0.001;
-//    double m = 0.0001;
-//    double sun = 1;
-//
-//    double X = 0;
-//    double Y = 300;
-//    double Vx = 0.00001825;
-//    double Vy = 0;
-//    int loops = 650000000;
-//
-//    // Nice 002 - around
-//    double k = 0.001;
-//    double m = 0.0001;
-//    double sun = 1;
-//
-//    double X = 0;
-//    double Y = 300;
-//    double Vx = 0.0000182;
-//    double Vy = 0;
-//    int loops = 550000000;
-//
-//    // Nice 001 - around
-//    double k = 0.001;
-//    double m = 0.0001;
-//    double sun = 1;
-//
-//    double X = 0;
-//    double Y = 300;
-//    double Vx = 0.000018;
-//    double Vy = 0;
-//    int loops = 550000000;
-//
-//    // Equilibrio - around
-//    double k = 0.001;
-//    double m = 0.0001;
-//    double sun = 1;
-//
 
     void drawOrbit(Graphics g, int gType) {
 
@@ -114,7 +75,13 @@ public class GraphMain extends JFrame {
             double bx = 0;
             double by = 0;
 
+            int roundsCounter = 0;
+
             for (int i=0; i<loops; i++) {
+                if ((bx < 0) && (ax > 0)) {
+                    roundsCounter++;
+                    System.out.println("  - round "+roundsCounter+" "+Vx+"|"+Vy);
+                }
                 bx = ax;
                 by = ay;
 
@@ -174,8 +141,8 @@ public class GraphMain extends JFrame {
         drawGrid(g);
         g.setColor(Color.blue);
         drawOrbit(g,1);
-//        g.setColor(Color.green);
-//        drawOrbit(g,2);
+        g.setColor(Color.green);
+        drawOrbit(g,2);
         g.setColor(Color.yellow);
         drawOrbit(g,3);
         g.setColor(Color.orange);

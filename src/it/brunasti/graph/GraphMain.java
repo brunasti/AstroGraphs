@@ -60,7 +60,7 @@ public class GraphMain extends JFrame {
 
     double X = 0;
     double Y = 300;
-    double Vx = 0.00015;
+    double Vx = 0.000057;
     double Vy = 0;
     int loops = 350000000;
 
@@ -80,7 +80,7 @@ public class GraphMain extends JFrame {
             for (int i=0; i<loops; i++) {
                 if ((bx < 0) && (ax > 0)) {
                     roundsCounter++;
-                    System.out.println("  - round "+roundsCounter+" "+Vx+"|"+Vy);
+                    System.out.println("  - round "+roundsCounter+" "+vx+"|"+vy+" - L"+i);
                 }
                 bx = ax;
                 by = ay;

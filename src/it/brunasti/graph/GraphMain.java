@@ -54,15 +54,17 @@ public class GraphMain extends JFrame {
     }
 
     // Equilibrio - around
-    double k = 0.1;
+    double k = 0.01;
     double m = 0.0001;
     double sun = 1;
 
     double X = 0;
     double Y = 300;
-    double Vx = 0.000057;
+    double Vx = 0.00001786;
+//    double Vx = 0.00001792;
+//    double Vx = 0.000001;
     double Vy = 0;
-    int loops = 350000000;
+    int loops = 45000000;
 
     void drawOrbit(Graphics g, int gType) {
 

@@ -54,13 +54,13 @@ public class GraphMain extends JFrame {
     }
 
     // Equilibrio - around
-    double k = 0.01;
+    double k = 0.0001;
     double m = 0.0001;
     double sun = 1;
 
     double X = 0;
     double Y = 300;
-    double Vx = 0.00001786;
+    double Vx = 0.000485;
 //    double Vx = 0.00001792;
 //    double Vx = 0.000001;
     double Vy = 0;
@@ -98,22 +98,22 @@ public class GraphMain extends JFrame {
 
                 switch (gType) {
                     case 1:
-                        f = -(k * m * sun) / (d / fK);
+                        f = -(k * sun) / (d / fK);
                         break;
                     case 2:
-                        f = -(k * m * sun) / (d * d);
+                        f = -(k * sun) / (d * d);
                         break;
                     case 3:
-                        f = -(k * m * sun) / (d * d * d / fK);
+                        f = -(k * sun) / (d * d * d / fK);
                         break;
                     case 4:
-                        f = -(k * m * sun) / (d * d * d * d / fK);
+                        f = -(k * sun) / (d * d * d * d / fK);
                         break;
                     case 5:
-                        f = -(k * m * sun) / (d * d * d * d * d / fK);
+                        f = -(k * sun) / (d * d * d * d * d / fK);
                         break;
                     case 6:
-                        f = -(k * m * sun) / (d * d * d * d * d * d / fK);
+                        f = -(k * sun) / (d * d * d * d * d * d / fK);
                         break;
                 }
 

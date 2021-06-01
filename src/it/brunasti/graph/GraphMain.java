@@ -55,7 +55,6 @@ public class GraphMain extends JFrame {
 
     // Equilibrio - around
     double k = 0.00001;
-//    double m = 0.0001;
     double sun = 1;
 
     double X = 0;

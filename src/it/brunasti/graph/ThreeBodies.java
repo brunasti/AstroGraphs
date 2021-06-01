@@ -51,7 +51,7 @@ public class ThreeBodies extends JFrame {
     }
 
     // Equilibrio - around
-    double k = 0.000001;
+    double k = 0.0000001;
     double m = 0.01;
     double sun = 100;
 
@@ -59,7 +59,7 @@ public class ThreeBodies extends JFrame {
     Body earth;
 
 
-    int loops = 4500000;
+    int loops = 45000000;
 
     void setup() {
         jup = new Body();
@@ -69,7 +69,7 @@ public class ThreeBodies extends JFrame {
         jup.y = 100;
         jup.sy = 100;
 
-        jup.vx = 0.0008;
+        jup.vx = 0.0003;
         jup.vy = 0;
         jup.name = "jupiter";
 
@@ -80,32 +80,33 @@ public class ThreeBodies extends JFrame {
         earth.y = 0;
         earth.sy = 250;
         earth.vx = -0.0000;
-        earth.vy = -0.0004;
+        earth.vy = -0.000149;
         earth.c = Color.blue;
         earth.name = "earth";
     }
 
 
-    void drawOrbitStep(Graphics g, Body jup, int i) throws CrashException {
+    void drawOrbitStep(Graphics g, Body body, int loops, Body[] others) throws CrashException {
         try {
-            double ax = jup.x;
-            double ay = jup.y;
-            double vx = jup.vx;
-            double vy = jup.vy;
-            double bx = jup.bx;
-            double by = jup.by;
+            double ax = body.x;
+            double ay = body.y;
+            double vx = body.vx;
+            double vy = body.vy;
+            double bx = body.bx;
+            double by = body.by;
 
             if ((bx < 0) && (ax > 0)) {
-                jup.round = jup.round + 1;
-                System.out.println("  "+jup.name+" - round  "+jup.round+" : "+vx+"|"+vy+" - L"+i);
+                body.round = body.round + 1;
+                System.out.println("  "+body.name+" - round  "+body.round+" : "+vx+"|"+vy+" - L:"+loops);
             }
-            jup.bx = ax;
-            jup.by = ay;
+            body.bx = ax;
+            body.by = ay;
+
 
             double d = Math.sqrt((ax * ax) + (ay * ay));
             if (d < 5) {
-                System.out.println("  "+jup.name+"  Crash!....");
-                throw new CrashException(jup.name);
+                System.out.println("  "+body.name+"  Crash!....");
+                throw new CrashException(body.name);
 //                break;
             }
             double f = 0;
@@ -117,13 +118,30 @@ public class ThreeBodies extends JFrame {
             fy = f * (ay / d);
             fx = f * (ax / d);
 
-            jup.x = ax + vx;
-            jup.y = ay + vy;
+            if (others != null) {
+                for (int i=0; i< others.length; i++) {
+                    double dx = ax - others[i].x;
+                    double dy = ay - others[i].y;
+                    d = Math.sqrt((dx * dx) + (dy * dy));
+                    if (d < 1) {
+                        System.out.println("  "+body.name+"  Crashed on "+others[i].name);
+                        throw new CrashException(body.name+" on "+others[i].name);
+                    }
+                    f = 0;
+                    f = -(k * others[i].m) / (d * d);
 
-            jup.vx = vx + fx;
-            jup.vy = vy + fy;
+                    fy = fy + f * (ay / d);
+                    fx = fx + f * (ax / d);
+                }
+            }
 
-            drawRoute(g, jup.x, jup.y, jup.bx, jup.by, jup.c);
+            body.x = ax + vx;
+            body.y = ay + vy;
+
+            body.vx = vx + fx;
+            body.vy = vy + fy;
+
+            drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
         } catch (ArithmeticException ae) {
             System.out.println(ae.getMessage());
         }
@@ -132,9 +150,11 @@ public class ThreeBodies extends JFrame {
 
     void drawOrbit(Graphics g) {
         try {
+            Body[] others = new Body[1];
+            others[0] = jup;
             for (int i=0; i<loops; i++) {
-                drawOrbitStep(g,jup,i);
-                drawOrbitStep(g,earth,i);
+                drawOrbitStep(g,jup,i, null);
+                drawOrbitStep(g,earth,i, others);
             }
         } catch (ArithmeticException ae) {
             System.out.println(ae.getMessage());

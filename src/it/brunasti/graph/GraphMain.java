@@ -60,9 +60,9 @@ public class GraphMain extends JFrame {
 
     double X = 0;
     double Y = 300;
-    double Vx = 0.0001825;
+    double Vx = 0.000181;
     double Vy = 0;
-    int loops = 35000000;
+    int loops = 75000000;
 
     void drawOrbit(Graphics g, int gType) {
 

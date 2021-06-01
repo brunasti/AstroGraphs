@@ -75,7 +75,7 @@ public class ThreeBodies extends JFrame {
 
         earth = new Body();
 
-        earth.m = 0.01;
+        earth.m = 0.001;
         earth.x = 250;
         earth.y = 0;
         earth.sy = 250;

@@ -50,7 +50,6 @@ public class ThreeBodies extends JFrame {
         g2d.draw(theCircle);
     }
 
-    // Equilibrio - around
     double k = 0.0000001;
     double m = 0.01;
     double sun = 100;
@@ -59,30 +58,28 @@ public class ThreeBodies extends JFrame {
     Body earth;
 
 
-    int loops = 45000000;
+    int loops = 450000000;
 
     void setup() {
         jup = new Body();
-
-        jup.m = 1;
-        jup.x = 0;
-        jup.y = 100;
-        jup.sy = 100;
-
-        jup.vx = 0.0003;
-        jup.vy = 0;
         jup.name = "jupiter";
+        jup.m = 3;
+        jup.x = 0;
+        jup.y = 300;
+        jup.sy = 300;
+        jup.vx = 0.000185;
+        jup.vy = 0;
+
 
         earth = new Body();
-
-        earth.m = 0.001;
-        earth.x = 250;
-        earth.y = 0;
-        earth.sy = 250;
-        earth.vx = -0.0000;
-        earth.vy = -0.000149;
-        earth.c = Color.blue;
         earth.name = "earth";
+        earth.m = 0.001;
+        earth.x = 150;
+        earth.y = 0;
+        earth.sy = 150;
+        earth.vx = -0.0000;
+        earth.vy = -0.000285;
+        earth.c = Color.blue;
     }
 
 

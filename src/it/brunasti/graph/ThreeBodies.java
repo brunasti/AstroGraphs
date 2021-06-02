@@ -50,9 +50,9 @@ public class ThreeBodies extends JFrame {
         g2d.draw(theCircle);
     }
 
-    double k = 0.0000001;
+    double k = 0.00000001;
     double m = 0.01;
-    double sun = 100;
+    double sun = 1000;
 
     Body jup;
     Body earth;
@@ -74,11 +74,11 @@ public class ThreeBodies extends JFrame {
         earth = new Body();
         earth.name = "earth";
         earth.m = 0.001;
-        earth.x = 150;
+        earth.x = 100;
         earth.y = 0;
-        earth.sy = 150;
+        earth.sy = 100;
         earth.vx = -0.0000;
-        earth.vy = -0.000285;
+        earth.vy = -0.000330;
         earth.c = Color.blue;
     }
 
@@ -106,11 +106,11 @@ public class ThreeBodies extends JFrame {
                 throw new CrashException(body.name);
 //                break;
             }
-            double f = 0;
+            double f;
             f = -(k * sun) / (d * d);
 
-            double fx = 0;
-            double fy = 0;
+            double fx;
+            double fy;
 
             fy = f * (ay / d);
             fx = f * (ax / d);
@@ -124,7 +124,7 @@ public class ThreeBodies extends JFrame {
                         System.out.println("  "+body.name+"  Crashed on "+others[i].name);
                         throw new CrashException(body.name+" on "+others[i].name);
                     }
-                    f = 0;
+
                     f = -(k * others[i].m) / (d * d);
 
                     fy = fy + f * (ay / d);

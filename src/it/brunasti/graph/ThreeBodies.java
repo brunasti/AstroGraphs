@@ -50,35 +50,35 @@ public class ThreeBodies extends JFrame {
         g2d.draw(theCircle);
     }
 
-    double k = 0.00000001;
-    double m = 0.01;
-    double sun = 1000;
+    double k = 0.0000001;
+//    double m = 0.01;
+    double sun = 100;
 
     Body jup;
     Body earth;
 
 
-    int loops = 450000000;
+    int loops = 10000000;
 
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
         jup.m = 3;
         jup.x = 0;
-        jup.y = 300;
-        jup.sy = 300;
-        jup.vx = 0.000185;
+        jup.y = 100;
+        jup.sy = 100;
+        jup.vx = 0.000315;
         jup.vy = 0;
 
 
         earth = new Body();
         earth.name = "earth";
         earth.m = 0.001;
-        earth.x = 100;
+        earth.x = 300;
         earth.y = 0;
-        earth.sy = 100;
+        earth.sy = 300;
         earth.vx = -0.0000;
-        earth.vy = -0.000330;
+        earth.vy = -0.000180;
         earth.c = Color.blue;
     }
 

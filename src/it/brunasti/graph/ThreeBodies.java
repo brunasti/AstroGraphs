@@ -16,13 +16,13 @@ public class ThreeBodies extends JFrame {
     Body jup;
     Body earth;
 
-    int loops = 500000000;
+    int loops = 100000000;
 
 
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 1;
+        jup.m = 4;
         jup.x = 0;
         jup.y = 300;
         jup.sy = 300;

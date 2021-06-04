@@ -10,6 +10,38 @@ public class ThreeBodies extends JFrame {
     final static int CX = 500;
     final static int CY = 400;
 
+    double k = 0.0000001;
+    double sun = 100;
+
+    Body jup;
+    Body earth;
+
+    int loops = 500000000;
+
+
+    void setup() {
+        jup = new Body();
+        jup.name = "jupiter";
+        jup.m = 0.3;
+        jup.x = 0;
+        jup.y = 300;
+        jup.sy = 300;
+        jup.vx = 0.000180;
+        jup.vy = 0;
+
+
+        earth = new Body();
+        earth.name = "earth";
+        earth.m = 0.001;
+        earth.x = 200;
+        earth.y = 0;
+        earth.sy = 200;
+        earth.vx = -0.0000;
+        earth.vy = -0.000180;
+        earth.c = Color.blue;
+    }
+
+
     public ThreeBodies() {
         super("Three Bodies Problem");
 
@@ -33,6 +65,9 @@ public class ThreeBodies extends JFrame {
         int j_y = Math.toIntExact(b_y);
 
         g.drawLine(i_x, i_y, j_x, j_y);
+        g.setColor(Color.white);
+        g.drawLine(i_x, i_y, i_x, i_y);
+
     }
 
     void drawGrid(Graphics g) {
@@ -49,39 +84,6 @@ public class ThreeBodies extends JFrame {
         Shape theCircle = new Ellipse2D.Double(CX - jup.sy, CY - jup.sy, 2.0 * jup.sy, 2.0 * jup.sy);
         g2d.draw(theCircle);
     }
-
-    double k = 0.0000001;
-//    double m = 0.01;
-    double sun = 100;
-
-    Body jup;
-    Body earth;
-
-
-    int loops = 500000000;
-
-    void setup() {
-        jup = new Body();
-        jup.name = "jupiter";
-        jup.m = 3;
-        jup.x = 0;
-        jup.y = 300;
-        jup.sy = 300;
-        jup.vx = 0.0001750;
-        jup.vy = 0;
-
-
-        earth = new Body();
-        earth.name = "earth";
-        earth.m = 0.001;
-        earth.x = 300;
-        earth.y = 0;
-        earth.sy = 300;
-        earth.vx = -0.0000;
-        earth.vy = -0.000140;
-        earth.c = Color.blue;
-    }
-
 
     void drawOrbitStep(Graphics g, Body body, int loops, Body[] others) throws CrashException {
         try {

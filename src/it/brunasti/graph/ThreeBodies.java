@@ -22,7 +22,7 @@ public class ThreeBodies extends JFrame {
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 0.3;
+        jup.m = 1;
         jup.x = 0;
         jup.y = 300;
         jup.sy = 300;
@@ -37,7 +37,7 @@ public class ThreeBodies extends JFrame {
         earth.y = 0;
         earth.sy = 200;
         earth.vx = -0.0000;
-        earth.vy = -0.000180;
+        earth.vy = -0.000160;
         earth.c = Color.blue;
     }
 
@@ -129,8 +129,8 @@ public class ThreeBodies extends JFrame {
 
                     f = -(k * others[i].m) / (d * d);
 
-                    fy = fy + f * (ay / d);
-                    fx = fx + f * (ax / d);
+                    fy = fy + f * (dy / d);
+                    fx = fx + f * (dx / d);
                 }
             }
 

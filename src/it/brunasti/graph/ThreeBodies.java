@@ -22,22 +22,21 @@ public class ThreeBodies extends JFrame {
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 8;
+        jup.m = 1;
         jup.x = 0;
-        jup.y = 350;
-        jup.sy = 350;
+        jup.y = 340;
+        jup.sy = 340;
         jup.vx = 0.000160;
         jup.vy = 0;
-
 
         earth = new Body();
         earth.name = "earth";
         earth.m = 0.001;
-        earth.x = -0;
-        earth.y = -150;
+        earth.x = 0;
+        earth.y = 360;
         earth.sx = -0;
-        earth.sy = -150;
-        earth.vx = -0.000230;
+        earth.sy = 360;
+        earth.vx = 0.000220;
         earth.vy = -0.0000;
         earth.c = Color.blue;
     }
@@ -124,8 +123,8 @@ public class ThreeBodies extends JFrame {
                     double dy = ay - others[i].y;
                     d = Math.sqrt((dx * dx) + (dy * dy));
                     if (d < 1) {
-                        System.out.println("  "+body.name+"  Crashed on "+others[i].name);
-                        throw new CrashException(body.name+" on "+others[i].name);
+                        System.out.println("  "+body.name+"  Crashed on "+others[i].name+" L:"+loops);
+                        throw new CrashException(body.name+" on "+others[i].name+" at loop "+loops);
                     }
 
                     f = -(k * others[i].m) / (d * d);

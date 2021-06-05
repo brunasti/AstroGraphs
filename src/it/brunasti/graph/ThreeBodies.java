@@ -22,7 +22,7 @@ public class ThreeBodies extends JFrame {
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 5;
+        jup.m = 8;
         jup.x = 0;
         jup.y = 350;
         jup.sy = 350;
@@ -33,11 +33,12 @@ public class ThreeBodies extends JFrame {
         earth = new Body();
         earth.name = "earth";
         earth.m = 0.001;
-        earth.x = 200;
-        earth.y = 0;
-        earth.sy = 200;
-        earth.vx = -0.0000;
-        earth.vy = -0.000160;
+        earth.x = -0;
+        earth.y = -150;
+        earth.sx = -0;
+        earth.sy = -150;
+        earth.vx = -0.000230;
+        earth.vy = -0.0000;
         earth.c = Color.blue;
     }
 

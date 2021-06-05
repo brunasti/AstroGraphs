@@ -22,11 +22,11 @@ public class ThreeBodies extends JFrame {
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 4;
+        jup.m = 5;
         jup.x = 0;
-        jup.y = 300;
-        jup.sy = 300;
-        jup.vx = 0.000180;
+        jup.y = 350;
+        jup.sy = 350;
+        jup.vx = 0.000160;
         jup.vy = 0;
 
 

@@ -24,9 +24,9 @@ public class ThreeBodies extends JFrame {
         jup.name = "jupiter";
         jup.m = 3;
         jup.x = 0;
-        jup.y = 340;
-        jup.sy = 340;
-        jup.vx = 0.000160;
+        jup.y = 330;
+        jup.sy = 330;
+        jup.vx = 0.000175;
         jup.vy = 0;
 
         earth = new Body();

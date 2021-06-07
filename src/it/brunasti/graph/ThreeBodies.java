@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ThreeBodies extends JFrame {
 
-    final static int CX = 500;
-    final static int CY = 400;
+    final static int CX = 650;
+    final static int CY = 440;
 
     double k = 0.0000001;
     double sun = 100;
@@ -22,7 +25,7 @@ public class ThreeBodies extends JFrame {
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 3;
+        jup.m = 7;
         jup.x = 0;
         jup.y = 330;
         jup.sy = 330;
@@ -36,7 +39,7 @@ public class ThreeBodies extends JFrame {
         earth.y = 360;
         earth.sx = -0;
         earth.sy = 360;
-        earth.vx = 0.000240;
+        earth.vx = 0.000410;
         earth.vy = -0.0000;
         earth.c = Color.blue;
     }
@@ -148,6 +151,10 @@ public class ThreeBodies extends JFrame {
 
 
     void drawOrbit(Graphics g) {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd - HH:mm:ss z");
+        long startTime = System.currentTimeMillis();
+        Date date = new Date(startTime);
+        System.out.println("Start : "+formatter.format(date));
         try {
             Body[] others = new Body[1];
             others[0] = jup;
@@ -160,6 +167,12 @@ public class ThreeBodies extends JFrame {
         } catch (CrashException ce) {
             System.out.println("Crash!......."+ce.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        date = new Date(endTime);
+        System.out.println("End : "+formatter.format(date));
+        long deltaTime = endTime - startTime;
+        date = new Date(deltaTime);
+        System.out.println("Took : "+formatter.format(date));
     }
 
     public void paint(Graphics g) {

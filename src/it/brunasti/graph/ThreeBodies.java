@@ -33,10 +33,10 @@ public class ThreeBodies extends JFrame {
         earth.name = "earth";
         earth.m = 0.001;
         earth.x = 0;
-        earth.y = 350;
+        earth.y = 360;
         earth.sx = -0;
-        earth.sy = 345;
-        earth.vx = 0.000520;
+        earth.sy = 360;
+        earth.vx = 0.000500;
         earth.vy = -0.0000;
         earth.c = Color.blue;
     }

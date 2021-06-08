@@ -13,44 +13,58 @@ public class ThreeBodies extends JFrame {
     double k = 0.0000001;
     double sun = 100;
 
-    transient Body[] bodies = new Body[3];
+    transient Body[] bodies;
 
     int loops = 50000000;
 
 
     void setup() {
+        bodies = new Body[4];
+
         Body b;
+
         b = new Body();
         b.name = "jupiter";
-        b.m = 5;
+        b.m = 2;
         b.x = 0;
-        b.y = 340;
-        b.sy = 340;
-        b.vx = 0.000170;
+        b.y = 240;
+        b.sy = 240;
+        b.vx = 0.000200;
         b.vy = 0;
         b.c = Color.blue;
         bodies[0] = b;
 
         b = new Body();
+        b.name = "saturn";
+        b.m = 1;
+        b.x = 0;
+        b.y = 350;
+        b.sy = 350;
+        b.vx = 0.000175;
+        b.vy = 0;
+        b.c = Color.magenta;
+        bodies[3] = b;
+
+        b = new Body();
         b.name = "mars";
         b.m = 0.01;
         b.x = 0;
-        b.y = 250;
+        b.y = 110;
         b.sx = -0;
-        b.sy = 250;
-        b.vx = 0.000180;
+        b.sy = 110;
+        b.vx = 0.000280;
         b.vy = -0.0000;
         b.c = Color.red;
         bodies[1] = b;
 
         b = new Body();
         b.name = "earth";
-        b.m = 0.1;
+        b.m = 0.05;
         b.x = 0;
-        b.y = 170;
+        b.y = 70;
         b.sx = -0;
-        b.sy = 170;
-        b.vx = 0.000220;
+        b.sy = 70;
+        b.vx = 0.000350;
         b.vy = -0.0000;
         b.c = Color.darkGray;
         bodies[2] = b;
@@ -58,20 +72,29 @@ public class ThreeBodies extends JFrame {
 
         Body[] others;
 
-        others= new Body[2];
+        others= new Body[3];
         others[0] = bodies[0];
         others[1] = bodies[2];
+        others[2] = bodies[3];
         bodies[1].others = others;
 
-        others= new Body[2];
+        others= new Body[3];
         others[0] = bodies[0];
         others[1] = bodies[1];
+        others[2] = bodies[3];
         bodies[2].others = others;
 
-        others= new Body[2];
+        others= new Body[3];
         others[0] = bodies[1];
         others[1] = bodies[2];
+        others[2] = bodies[3];
         bodies[0].others = others;
+
+        others= new Body[3];
+        others[0] = bodies[0];
+        others[1] = bodies[1];
+        others[2] = bodies[2];
+        bodies[3].others = others;
 
     }
 

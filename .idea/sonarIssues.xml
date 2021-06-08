@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$MAVEN_REPOSITORY$/com/booking/payments/experience/paymentmanager-client/1.0.47/paymentmanager-client-1.0.47.jar!/com/booking/payments/experience/paymentmanager/client/PaymentApi.class">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$MAVEN_REPOSITORY$/com/booking/payments/experience/paymentmanager-client/1.0.47/paymentmanager-client-1.0.47.jar!/com/booking/payments/experience/paymentmanager/client/models/PaymentChargeRequest.class">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/ThreeBodies.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

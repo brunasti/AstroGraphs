@@ -7,8 +7,8 @@ import java.awt.geom.Rectangle2D;
 
 public class ThreeBodies extends JFrame {
 
-    final static int CX = 500;
-    final static int CY = 400;
+    final static int CX = 640;
+    final static int CY = 430;
 
     double k = 0.0000001;
     double sun = 100;
@@ -22,21 +22,21 @@ public class ThreeBodies extends JFrame {
     void setup() {
         jup = new Body();
         jup.name = "jupiter";
-        jup.m = 3;
+        jup.m = 5;
         jup.x = 0;
-        jup.y = 330;
-        jup.sy = 330;
-        jup.vx = 0.000175;
+        jup.y = 340;
+        jup.sy = 340;
+        jup.vx = 0.000173;
         jup.vy = 0;
 
         earth = new Body();
         earth.name = "earth";
         earth.m = 0.001;
         earth.x = 0;
-        earth.y = 360;
+        earth.y = 350;
         earth.sx = -0;
-        earth.sy = 360;
-        earth.vx = 0.000240;
+        earth.sy = 345;
+        earth.vx = 0.000450;
         earth.vy = -0.0000;
         earth.c = Color.blue;
     }

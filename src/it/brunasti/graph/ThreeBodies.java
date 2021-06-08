@@ -7,38 +7,52 @@ import java.awt.geom.Rectangle2D;
 
 public class ThreeBodies extends JFrame {
 
-    final static int CX = 640;
-    final static int CY = 430;
+    static final int CX = 640;
+    static final int CY = 430;
 
     double k = 0.0000001;
     double sun = 100;
 
-    Body jup;
-    Body earth;
+    transient Body[] bodies = new Body[3];
 
-    int loops = 100000000;
+    int loops = 10000000;
 
 
     void setup() {
-        jup = new Body();
-        jup.name = "jupiter";
-        jup.m = 30;
-        jup.x = 0;
-        jup.y = 320;
-        jup.sy = 320;
-        jup.vx = 0.000176;
-        jup.vy = 0;
+        Body b;
+        b = new Body();
+        b.name = "jupiter";
+        b.m = 20;
+        b.x = 0;
+        b.y = 320;
+        b.sy = 320;
+        b.vx = 0.000176;
+        b.vy = 0;
+        bodies[0] = b;
 
-        earth = new Body();
-        earth.name = "earth";
-        earth.m = 0.001;
-        earth.x = 0;
-        earth.y = 360;
-        earth.sx = -0;
-        earth.sy = 360;
-        earth.vx = 0.000498;
-        earth.vy = -0.0000;
-        earth.c = Color.blue;
+        b = new Body();
+        b.name = "venus";
+        b.m = 0.001;
+        b.x = 0;
+        b.y = 260;
+        b.sx = -0;
+        b.sy = 260;
+        b.vx = 0.000180;
+        b.vy = -0.0000;
+        b.c = Color.blue;
+        bodies[1] = b;
+
+        b = new Body();
+        b.name = "earth";
+        b.m = 0.001;
+        b.x = 0;
+        b.y = 160;
+        b.sx = -0;
+        b.sy = 160;
+        b.vx = 0.000200;
+        b.vy = -0.0000;
+        b.c = Color.green;
+        bodies[2] = b;
     }
 
 
@@ -47,26 +61,26 @@ public class ThreeBodies extends JFrame {
 
         getContentPane().setBackground(Color.BLACK);
         setSize(CX*2, CY*2);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
     void drawRoute(Graphics g, double ax, double ay, double bx, double by, Color c) {
         g.setColor(c);
 
-        long a_x = CX + Math.round(ax);
-        long a_y = CY - Math.round(ay);
-        long b_x = CX + Math.round(bx);
-        long b_y = CY - Math.round(by);
+        long aX = CX + Math.round(ax);
+        long aY = CY - Math.round(ay);
+        long bX = CX + Math.round(bx);
+        long bY = CY - Math.round(by);
 
-        int i_x = Math.toIntExact(a_x);
-        int i_y = Math.toIntExact(a_y);
-        int j_x = Math.toIntExact(b_x);
-        int j_y = Math.toIntExact(b_y);
+        int iX = Math.toIntExact(aX);
+        int iY = Math.toIntExact(aY);
+        int jX = Math.toIntExact(bX);
+        int jY = Math.toIntExact(bY);
 
-        g.drawLine(i_x, i_y, j_x, j_y);
+        g.drawLine(iX, iY, jX, jY);
         g.setColor(Color.white);
-        g.drawLine(i_x, i_y, i_x, i_y);
+        g.drawLine(iX, iY, iX, iY);
 
     }
 
@@ -76,27 +90,28 @@ public class ThreeBodies extends JFrame {
 
         g.setColor(Color.white);
 
-        g2d.draw(new Rectangle2D.Float(5, 25, CX * 2 - 15, CY * 2 - 30));
+        g2d.draw(new Rectangle2D.Float(5, 25, (CX * 2) - 15, (CY * 2) - 30));
 
         g.drawLine(5, CY, (CX * 2)-10, CY);
         g.drawLine(CX, 25, CX, (CY * 2) - 5);
 
-        Shape theCircle = new Ellipse2D.Double(CX - jup.sy, CY - jup.sy, 2.0 * jup.sy, 2.0 * jup.sy);
+        Shape theCircle = new Ellipse2D.Double(CX - bodies[0].sy, CY - bodies[0].sy, 2.0 * bodies[0].sy, 2.0 * bodies[0].sy);
         g2d.draw(theCircle);
     }
 
-    void drawOrbitStep(Graphics g, Body body, int loops, Body[] others) throws CrashException {
+    void drawOrbitStep(Graphics g, Body body, int loops) throws CrashException {
         try {
             double ax = body.x;
             double ay = body.y;
             double vx = body.vx;
             double vy = body.vy;
-            double bx = body.bx;
-            double by = body.by;
+            double eX = body.bx;
+            double eY = body.by;
+            Body[] others = body.others;
 
-            if ((bx < 0) && (ax > 0)) {
+            if ((eX < 0) && (ax > 0)) {
                 body.round = body.round + 1;
-                System.out.println("  "+body.name+" - round  "+body.round+" : "+vx+"|"+vy+" - L:"+loops);
+                log("  "+body.name+" - round  "+body.round+" : "+vx+"|"+vy+" - L:"+loops);
             }
             body.bx = ax;
             body.by = ay;
@@ -104,9 +119,8 @@ public class ThreeBodies extends JFrame {
 
             double d = Math.sqrt((ax * ax) + (ay * ay));
             if (d < 5) {
-                System.out.println("  "+body.name+"  Crash!....");
+                log("  "+body.name+"  Crash!....");
                 throw new CrashException(body.name);
-//                break;
             }
             double f;
             f = -(k * sun) / (d * d);
@@ -123,7 +137,7 @@ public class ThreeBodies extends JFrame {
                     double dy = ay - others[i].y;
                     d = Math.sqrt((dx * dx) + (dy * dy));
                     if (d < 1) {
-                        System.out.println("  "+body.name+"  Crashed on "+others[i].name+" L:"+loops);
+                        log("  "+body.name+"  Crashed on "+others[i].name+" L:"+loops);
                         throw new CrashException(body.name+" on "+others[i].name+" at loop "+loops);
                     }
 
@@ -142,37 +156,43 @@ public class ThreeBodies extends JFrame {
 
             drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
         } catch (ArithmeticException ae) {
-            System.out.println(ae.getMessage());
+            log(ae.getMessage());
         }
     }
 
 
     void drawOrbit(Graphics g) {
         try {
-            Body[] others = new Body[1];
-            others[0] = jup;
+//            Body[] others = new Body[1];
+//            others[0] = bodies[0];
             for (int i=0; i<loops; i++) {
-                drawOrbitStep(g,jup,i, null);
-                drawOrbitStep(g,earth,i, others);
+                for (int b = 0; b<bodies.length; b++) {
+                    drawOrbitStep(g, bodies[b], i);
+//                    drawOrbitStep(g, bodies[1], i, others);
+                }
             }
         } catch (ArithmeticException ae) {
-            System.out.println(ae.getMessage());
+            log(ae.getMessage());
         } catch (CrashException ce) {
-            System.out.println("Crash!......."+ce.getMessage());
+            log("Crash!......."+ce.getMessage());
         }
     }
 
+    @Override
     public void paint(Graphics g) {
         setup();
         super.paint(g);
         drawGrid(g);
         drawOrbit(g);
         drawGrid(g);
-        System.out.println("DONE");
+        log("DONE");
     }
 
-    public static void main(String[] args) throws Exception {
+    private static void log(String msg) {
+        System.out.println(msg);
+    }
 
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

@@ -18,6 +18,66 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/CheckEligibilityResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/CreateTokenChargeResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/CreateTokenResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/FxApiDefinition.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/ModifyEligibilityCurrencyResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/ModifyEligibilityProductResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/ReadTokenResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/RegenerateTokenResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/services/TokenService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/db/DBTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/resources/CreateTokenResourceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/Body.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/ThreeBodies.java">
           <value>
             <set />

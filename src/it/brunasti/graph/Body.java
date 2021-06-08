@@ -21,4 +21,6 @@ public class Body {
 
     public int round = 0;
 
+    public Body[] others = new Body[0];
+
 }

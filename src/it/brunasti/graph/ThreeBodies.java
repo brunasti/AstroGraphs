@@ -15,44 +15,64 @@ public class ThreeBodies extends JFrame {
 
     transient Body[] bodies = new Body[3];
 
-    int loops = 10000000;
+    int loops = 50000000;
 
 
     void setup() {
         Body b;
         b = new Body();
         b.name = "jupiter";
-        b.m = 20;
+        b.m = 5;
         b.x = 0;
-        b.y = 320;
-        b.sy = 320;
-        b.vx = 0.000176;
+        b.y = 340;
+        b.sy = 340;
+        b.vx = 0.000170;
         b.vy = 0;
+        b.c = Color.blue;
         bodies[0] = b;
 
         b = new Body();
-        b.name = "venus";
-        b.m = 0.001;
+        b.name = "mars";
+        b.m = 0.01;
         b.x = 0;
-        b.y = 260;
+        b.y = 250;
         b.sx = -0;
-        b.sy = 260;
+        b.sy = 250;
         b.vx = 0.000180;
         b.vy = -0.0000;
-        b.c = Color.blue;
+        b.c = Color.red;
         bodies[1] = b;
 
         b = new Body();
         b.name = "earth";
-        b.m = 0.001;
+        b.m = 0.1;
         b.x = 0;
-        b.y = 160;
+        b.y = 170;
         b.sx = -0;
-        b.sy = 160;
-        b.vx = 0.000200;
+        b.sy = 170;
+        b.vx = 0.000220;
         b.vy = -0.0000;
-        b.c = Color.green;
+        b.c = Color.darkGray;
         bodies[2] = b;
+
+
+        Body[] others;
+
+        others= new Body[2];
+        others[0] = bodies[0];
+        others[1] = bodies[2];
+        bodies[1].others = others;
+
+        others= new Body[2];
+        others[0] = bodies[0];
+        others[1] = bodies[1];
+        bodies[2].others = others;
+
+        others= new Body[2];
+        others[0] = bodies[1];
+        others[1] = bodies[2];
+        bodies[0].others = others;
+
     }
 
 
@@ -90,7 +110,7 @@ public class ThreeBodies extends JFrame {
 
         g.setColor(Color.white);
 
-        g2d.draw(new Rectangle2D.Float(5, 25, (CX * 2) - 15, (CY * 2) - 30));
+        g2d.draw(new Rectangle2D.Float(5, 25, (CX * 2f) - 15, (CY * 2f) - 30));
 
         g.drawLine(5, CY, (CX * 2)-10, CY);
         g.drawLine(CX, 25, CX, (CY * 2) - 5);
@@ -163,12 +183,9 @@ public class ThreeBodies extends JFrame {
 
     void drawOrbit(Graphics g) {
         try {
-//            Body[] others = new Body[1];
-//            others[0] = bodies[0];
             for (int i=0; i<loops; i++) {
                 for (int b = 0; b<bodies.length; b++) {
                     drawOrbitStep(g, bodies[b], i);
-//                    drawOrbitStep(g, bodies[1], i, others);
                 }
             }
         } catch (ArithmeticException ae) {

@@ -15,7 +15,7 @@ public class ThreeBodies extends JFrame {
 
     transient Body[] bodies;
 
-    int loops = 50000000;
+    int loops = 150000000;
 
 
     void setup() {
@@ -25,22 +25,22 @@ public class ThreeBodies extends JFrame {
 
         b = new Body();
         b.name = "jupiter";
-        b.m = 2;
+        b.m = 1;
         b.x = 0;
         b.y = 240;
         b.sy = 240;
-        b.vx = 0.000200;
+        b.vx = 0.000205;
         b.vy = 0;
         b.c = Color.blue;
         bodies[0] = b;
 
         b = new Body();
         b.name = "saturn";
-        b.m = 1;
+        b.m = 3;
         b.x = 0;
         b.y = 350;
         b.sy = 350;
-        b.vx = 0.000175;
+        b.vx = 0.000170;
         b.vy = 0;
         b.c = Color.magenta;
         bodies[3] = b;
@@ -49,10 +49,10 @@ public class ThreeBodies extends JFrame {
         b.name = "mars";
         b.m = 0.01;
         b.x = 0;
-        b.y = 110;
+        b.y = 130;
         b.sx = -0;
-        b.sy = 110;
-        b.vx = 0.000280;
+        b.sy = 130;
+        b.vx = 0.000290;
         b.vy = -0.0000;
         b.c = Color.red;
         bodies[1] = b;

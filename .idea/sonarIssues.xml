@@ -18,6 +18,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/notes/OffLineModification-flow-new-opt_03.puml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/CheckEligibilityResource.java">
           <value>
             <set />
@@ -73,7 +78,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/resources/RegenerateTokenResourceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/Body.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/SolarSystem.java">
           <value>
             <set />
           </value>

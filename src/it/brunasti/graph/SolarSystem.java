@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class ThreeBodies extends JFrame {
+public class SolarSystem extends JFrame {
 
     static final int CX = 640;
     static final int CY = 435;
@@ -15,21 +15,21 @@ public class ThreeBodies extends JFrame {
 
     transient Body[] bodies;
 
-    int loops = 35000000;
+    int loops = 75000000;
 
     void setup() {
-        bodies = new Body[5];
+        bodies = new Body[10];
 
         Body b;
 
         b = new Body();
         b.name = "venus";
         b.m = 0.0025;
-        b.x = 2;
+        b.x = 0;
         b.y = 35;
-        b.sx = 2;
+        b.sx = -0;
         b.sy = 35;
-        b.vx = 0.0006435;
+        b.vx = 0.000535;
         b.vy = -0.0000;
         b.c = Color.green;
         bodies[0] = b;
@@ -53,70 +53,90 @@ public class ThreeBodies extends JFrame {
         b.y = 75;
         b.sx = -0;
         b.sy = 75;
-        b.vx = 0.0004065;
+        b.vx = 0.000365;
         b.vy = -0.0000;
         b.c = Color.red;
         bodies[2] = b;
 
         b = new Body();
+        b.name = "A1";
+        b.m = 0.00001;
+        b.x = 0;
+        b.y = 140;
+        b.sy = 140;
+        b.vx = 0.000255;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[3] = b;
+
+        b = new Body();
+        b.name = "A2";
+        b.m = 0.00001;
+        b.x = 5;
+        b.y = 140;
+        b.sy = 140;
+        b.vx = 0.00026;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[4] = b;
+
+        b = new Body();
+        b.name = "A3";
+        b.m = 0.00001;
+        b.x = 0;
+        b.y = 145;
+        b.sy = 145;
+        b.vx = 0.000265;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[5] = b;
+
+        b = new Body();
+        b.name = "C1";
+        b.m = 0.0000001;
+        b.x = 0;
+        b.y = 345;
+        b.sy = 345;
+        b.vx = 0.0000265;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[6] = b;
+
+
+        b = new Body();
         b.name = "jupiter";
-        b.m = 5;
+        b.m = 1;
         b.x = 0;
         b.y = 250;
         b.sy = 250;
         b.vx = 0.0002;
         b.vy = 0;
         b.c = Color.yellow;
-        bodies[3] = b;
+        bodies[7] = b;
 
         b = new Body();
         b.name = "saturn";
-        b.m = 3;
+        b.m = 0.3;
         b.x = 0;
         b.y = 500;
         b.sy = 500;
         b.vx = 0.0001415;
         b.vy = 0;
         b.c = Color.magenta;
-        bodies[4] = b;
+        bodies[8] = b;
 
 
         for (int x=0; x<bodies.length; x++) {
-            bodies[x].others = bodies;
+            if (bodies[x] != null) {
+                bodies[x].others = bodies;
+            }
         }
-//        Body[] others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[0];
-//        others[1] = bodies[1];
-//        others[2] = bodies[2];
-//        others[3] = bodies[3];
-//        others[4] = bodies[4];
-//        bodies[1].others = others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[0];
-//        others[1] = bodies[1];
-//        others[2] = bodies[3];
-//        bodies[2].others = others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[1];
-//        others[1] = bodies[2];
-//        others[2] = bodies[3];
-//        bodies[0].others = others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[0];
-//        others[1] = bodies[1];
-//        others[2] = bodies[2];
-//        bodies[3].others = others;
 
     }
 
 
-    public ThreeBodies() {
-        super("Three Bodies Problem");
+    public SolarSystem() {
+        super("Solar System");
 
         getContentPane().setBackground(Color.BLACK);
         setSize(CX*2, CY*2);
@@ -154,7 +174,7 @@ public class ThreeBodies extends JFrame {
         g.drawLine(5, CY, (CX * 2)-10, CY);
         g.drawLine(CX, 25, CX, (CY * 2) - 5);
 
-        Shape theCircle = new Ellipse2D.Double(CX - bodies[3].sy, CY - bodies[3].sy, 2.0 * bodies[3].sy, 2.0 * bodies[3].sy);
+        Shape theCircle = new Ellipse2D.Double(CX - 200, CY - 200, 2.0 * 200, 2.0 * 200);
         g2d.draw(theCircle);
     }
 
@@ -180,7 +200,7 @@ public class ThreeBodies extends JFrame {
 
 
             double d = Math.sqrt((ax * ax) + (ay * ay));
-            if (d < 5) {
+            if (d < 1) {
                 log("  "+body.name+"  Crash!....");
                 throw new CrashException(body.name);
             }
@@ -195,11 +215,11 @@ public class ThreeBodies extends JFrame {
 
             if (others != null) {
                 for (int i=0; i< others.length; i++) {
-                    if (others[i] != body) {
+                    if ((others[i] != null) && (others[i] != body)) {
                         double dx = ax - others[i].x;
                         double dy = ay - others[i].y;
                         d = Math.sqrt((dx * dx) + (dy * dy));
-                        if (d < 1) {
+                        if (d < 0.01) {
                             log("  " + body.name + "  Crashed on " + others[i].name + " L:" + loops);
                             throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
                         }
@@ -229,7 +249,9 @@ public class ThreeBodies extends JFrame {
         try {
             for (int i=0; i<loops; i++) {
                 for (int b = 0; b<bodies.length; b++) {
-                    drawOrbitStep(g, bodies[b], i);
+                    if (bodies[b] != null) {
+                        drawOrbitStep(g, bodies[b], i);
+                    }
                 }
             }
         } catch (ArithmeticException ae) {
@@ -257,7 +279,7 @@ public class ThreeBodies extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ThreeBodies().setVisible(true);
+                new SolarSystem().setVisible(true);
             }
         });
     }

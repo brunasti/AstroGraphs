@@ -22,17 +22,17 @@ public class SolarSystem extends JFrame {
 
         Body b;
 
-//        b = new Body();
-//        b.name = "venus";
-//        b.m = 0.0025;
-//        b.x = 0;
-//        b.y = 35;
-//        b.sx = -0;
-//        b.sy = 35;
-//        b.vx = 0.000535;
-//        b.vy = -0.0000;
-//        b.c = Color.green;
-//        bodies[0] = b;
+        b = new Body();
+        b.name = "venus";
+        b.m = 0.0025;
+        b.x = 0;
+        b.y = 35;
+        b.sx = -0;
+        b.sy = 35;
+        b.vx = 0.000535;
+        b.vy = -0.0000;
+        b.c = Color.green;
+        bodies[0] = b;
 
         b = new Body();
         b.name = "earth";
@@ -46,18 +46,18 @@ public class SolarSystem extends JFrame {
         b.c = Color.blue;
         bodies[1] = b;
 
-//        b = new Body();
-//        b.name = "mars";
-//        b.m = 0.001;
-//        b.x = 0;
-//        b.y = 75;
-//        b.sx = -0;
-//        b.sy = 75;
-//        b.vx = 0.000365;
-//        b.vy = -0.0000;
-//        b.c = Color.red;
-//        bodies[2] = b;
-//
+        b = new Body();
+        b.name = "mars";
+        b.m = 0.001;
+        b.x = 0;
+        b.y = 75;
+        b.sx = -0;
+        b.sy = 75;
+        b.vx = 0.000365;
+        b.vy = -0.0000;
+        b.c = Color.red;
+        bodies[2] = b;
+
 //        b = new Body();
 //        b.name = "A1";
 //        b.m = 0.00001;
@@ -103,16 +103,16 @@ public class SolarSystem extends JFrame {
         b.c = Color.yellow;
         bodies[7] = b;
 
-        b = new Body();
-        b.name = "saturn";
-        b.m = 1.3;
-        b.x = 0;
-        b.y = 480;
-        b.sy = 480;
-        b.vx = 0.000148;
-        b.vy = 0;
-        b.c = Color.magenta;
-        bodies[8] = b;
+//        b = new Body();
+//        b.name = "saturn";
+//        b.m = 1.3;
+//        b.x = 0;
+//        b.y = 480;
+//        b.sy = 480;
+//        b.vx = 0.000148;
+//        b.vy = 0;
+//        b.c = Color.magenta;
+//        bodies[8] = b;
 
 
 //        b = new Body();
@@ -215,7 +215,7 @@ public class SolarSystem extends JFrame {
 
             if ((eX < 0) && (ax > 0)) {
                 body.round = body.round + 1;
-                log("  "+body.name+" -        round "+body.round+" - Y : "+ay+" : "+vx+"|"+vy+" - L:"+loops);
+                log("  "+body.name+" -        round "+body.round+" - Y :  "+ay+" : "+vx+"|"+vy+" - L:"+loops);
             }
             if ((eX > 0) && (ax < 0)) {
                 log("  "+body.name+" - oppose round "+body.round+" - Y : "+ay+" : "+vx+"|"+vy+" - L:"+loops);

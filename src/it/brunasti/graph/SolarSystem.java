@@ -115,40 +115,40 @@ public class SolarSystem extends JFrame {
 //        bodies[8] = b;
 
 
-//        b = new Body();
-//        b.name = "C1";
-//        b.m = 0.0000001;
-//        b.x = 0;
-//        b.y = 345;
-//        b.sy = 345;
-//        b.vx = 0.0000265;
-//        b.vy = 0;
-//        b.c = Color.lightGray;
-//        bodies[10] = b;
-//
-//        b = new Body();
-//        b.name = "C2";
-//        b.m = 0.0000001;
-//        b.x = 300;
-//        b.y = 200;
-//        b.sx = 300;
-//        b.sy = 200;
-//        b.vx = 0.0000365;
-//        b.vy = -0.00002;
-//        b.c = Color.lightGray;
-//        bodies[11] = b;
-//
-//        b = new Body();
-//        b.name = "C3";
-//        b.m = 0.0000001;
-//        b.x = 400;
-//        b.y = -200;
-//        b.sx = 400;
-//        b.sy = -200;
-//        b.vx = 0.0000265;
-//        b.vy = 0.000051;
-//        b.c = Color.lightGray;
-//        bodies[12] = b;
+        b = new Body();
+        b.name = "C1";
+        b.m = 0.0000001;
+        b.x = 0;
+        b.y = 345;
+        b.sy = 345;
+        b.vx = 0.0000265;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[10] = b;
+
+        b = new Body();
+        b.name = "C2";
+        b.m = 0.0000001;
+        b.x = 300;
+        b.y = 200;
+        b.sx = 300;
+        b.sy = 200;
+        b.vx = 0.0000365;
+        b.vy = -0.00002;
+        b.c = Color.lightGray;
+        bodies[11] = b;
+
+        b = new Body();
+        b.name = "C3";
+        b.m = 0.0000001;
+        b.x = 400;
+        b.y = -200;
+        b.sx = 400;
+        b.sy = -200;
+        b.vx = 0.0000265;
+        b.vy = 0.000051;
+        b.c = Color.lightGray;
+        bodies[12] = b;
 
 
         for (int x=0; x<bodies.length; x++) {

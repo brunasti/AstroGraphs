@@ -15,24 +15,24 @@ public class SolarSystem extends JFrame {
 
     transient Body[] bodies;
 
-    int loops = 75000000;
+    int loops = 100000000;
 
     void setup() {
-        bodies = new Body[10];
+        bodies = new Body[15];
 
         Body b;
 
-        b = new Body();
-        b.name = "venus";
-        b.m = 0.0025;
-        b.x = 0;
-        b.y = 35;
-        b.sx = -0;
-        b.sy = 35;
-        b.vx = 0.000535;
-        b.vy = -0.0000;
-        b.c = Color.green;
-        bodies[0] = b;
+//        b = new Body();
+//        b.name = "venus";
+//        b.m = 0.0025;
+//        b.x = 0;
+//        b.y = 35;
+//        b.sx = -0;
+//        b.sy = 35;
+//        b.vx = 0.000535;
+//        b.vy = -0.0000;
+//        b.c = Color.green;
+//        bodies[0] = b;
 
         b = new Body();
         b.name = "earth";
@@ -46,66 +46,55 @@ public class SolarSystem extends JFrame {
         b.c = Color.blue;
         bodies[1] = b;
 
-        b = new Body();
-        b.name = "mars";
-        b.m = 0.001;
-        b.x = 0;
-        b.y = 75;
-        b.sx = -0;
-        b.sy = 75;
-        b.vx = 0.000365;
-        b.vy = -0.0000;
-        b.c = Color.red;
-        bodies[2] = b;
-
-        b = new Body();
-        b.name = "A1";
-        b.m = 0.00001;
-        b.x = 0;
-        b.y = 140;
-        b.sy = 140;
-        b.vx = 0.000255;
-        b.vy = 0;
-        b.c = Color.lightGray;
-        bodies[3] = b;
-
-        b = new Body();
-        b.name = "A2";
-        b.m = 0.00001;
-        b.x = 5;
-        b.y = 140;
-        b.sy = 140;
-        b.vx = 0.00026;
-        b.vy = 0;
-        b.c = Color.lightGray;
-        bodies[4] = b;
-
-        b = new Body();
-        b.name = "A3";
-        b.m = 0.00001;
-        b.x = 0;
-        b.y = 145;
-        b.sy = 145;
-        b.vx = 0.000265;
-        b.vy = 0;
-        b.c = Color.lightGray;
-        bodies[5] = b;
-
-        b = new Body();
-        b.name = "C1";
-        b.m = 0.0000001;
-        b.x = 0;
-        b.y = 345;
-        b.sy = 345;
-        b.vx = 0.0000265;
-        b.vy = 0;
-        b.c = Color.lightGray;
-        bodies[6] = b;
+//        b = new Body();
+//        b.name = "mars";
+//        b.m = 0.001;
+//        b.x = 0;
+//        b.y = 75;
+//        b.sx = -0;
+//        b.sy = 75;
+//        b.vx = 0.000365;
+//        b.vy = -0.0000;
+//        b.c = Color.red;
+//        bodies[2] = b;
+//
+//        b = new Body();
+//        b.name = "A1";
+//        b.m = 0.00001;
+//        b.x = 0;
+//        b.y = 140;
+//        b.sy = 140;
+//        b.vx = 0.000255;
+//        b.vy = 0;
+//        b.c = Color.lightGray;
+//        bodies[3] = b;
+//
+//        b = new Body();
+//        b.name = "A2";
+//        b.m = 0.00001;
+//        b.x = 5;
+//        b.y = 140;
+//        b.sy = 140;
+//        b.vx = 0.00026;
+//        b.vy = 0;
+//        b.c = Color.lightGray;
+//        bodies[4] = b;
+//
+//        b = new Body();
+//        b.name = "A3";
+//        b.m = 0.00001;
+//        b.x = 0;
+//        b.y = 145;
+//        b.sy = 145;
+//        b.vx = 0.000265;
+//        b.vy = 0;
+//        b.c = Color.lightGray;
+//        bodies[5] = b;
 
 
         b = new Body();
         b.name = "jupiter";
-        b.m = 1;
+        b.m = 3;
         b.x = 0;
         b.y = 250;
         b.sy = 250;
@@ -116,14 +105,50 @@ public class SolarSystem extends JFrame {
 
         b = new Body();
         b.name = "saturn";
-        b.m = 0.3;
+        b.m = 1.3;
         b.x = 0;
-        b.y = 500;
-        b.sy = 500;
-        b.vx = 0.0001415;
+        b.y = 480;
+        b.sy = 480;
+        b.vx = 0.000148;
         b.vy = 0;
         b.c = Color.magenta;
         bodies[8] = b;
+
+
+//        b = new Body();
+//        b.name = "C1";
+//        b.m = 0.0000001;
+//        b.x = 0;
+//        b.y = 345;
+//        b.sy = 345;
+//        b.vx = 0.0000265;
+//        b.vy = 0;
+//        b.c = Color.lightGray;
+//        bodies[10] = b;
+//
+//        b = new Body();
+//        b.name = "C2";
+//        b.m = 0.0000001;
+//        b.x = 300;
+//        b.y = 200;
+//        b.sx = 300;
+//        b.sy = 200;
+//        b.vx = 0.0000365;
+//        b.vy = -0.00002;
+//        b.c = Color.lightGray;
+//        bodies[11] = b;
+//
+//        b = new Body();
+//        b.name = "C3";
+//        b.m = 0.0000001;
+//        b.x = 400;
+//        b.y = -200;
+//        b.sx = 400;
+//        b.sy = -200;
+//        b.vx = 0.0000265;
+//        b.vy = 0.000051;
+//        b.c = Color.lightGray;
+//        bodies[12] = b;
 
 
         for (int x=0; x<bodies.length; x++) {
@@ -190,10 +215,10 @@ public class SolarSystem extends JFrame {
 
             if ((eX < 0) && (ax > 0)) {
                 body.round = body.round + 1;
-                log("  "+body.name+" - round  "+body.round+" : "+vx+"|"+vy+" - L:"+loops);
+                log("  "+body.name+" -        round "+body.round+" - Y : "+ay+" : "+vx+"|"+vy+" - L:"+loops);
             }
             if ((eX > 0) && (ax < 0)) {
-                log("  opposite "+body.name+" - Y : "+ay);
+                log("  "+body.name+" - oppose round "+body.round+" - Y : "+ay+" : "+vx+"|"+vy+" - L:"+loops);
             }
             body.bx = ax;
             body.by = ay;

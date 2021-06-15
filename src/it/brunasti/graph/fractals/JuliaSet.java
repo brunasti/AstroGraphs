@@ -4,35 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JuliaSet extends FractalBase {
-/*
- R = escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
-
- for each pixel (x, y) on the screen, do:
- {
- zx = scaled x coordinate of pixel # (scale to be between -R and R)
- # zx represents the real part of z.
- zy = scaled y coordinate of pixel # (scale to be between -R and R)
- # zy represents the imaginary part of z.
-
- iteration = 0
- max_iteration = 1000
-
- while (zx * zx + zy * zy < R**2  AND  iteration < max_iteration)
- {
- xtemp = zx * zx - zy * zy
- zy = 2 * zx * zy  + cy
- zx = xtemp + cx
-
- iteration = iteration + 1
- }
-
- if (iteration == max_iteration)
- return black;
- else
- return iteration;
- }
- */
-
 
     // escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
     float radius = 4f;
@@ -46,9 +17,9 @@ public class JuliaSet extends FractalBase {
         cx = 0.3f;
         cy = 0f;
 
-        fromX = -1;
-        toX = 1;
-        fromY = -0.7f;
+        fromX = 0.3f;
+        toX = 0.8f;
+        fromY = -0.4f;
 
         colorOption = 2;
 
@@ -63,6 +34,7 @@ public class JuliaSet extends FractalBase {
     void setup() {
         super.setup();
         log("radius "+radius);
+        log("cx:"+cx+" cy:"+cy);
 
         if (radius<0) {
             log("  - radius negative");
@@ -75,29 +47,6 @@ public class JuliaSet extends FractalBase {
     }
 
 
-    /*
-zx = scaled x coordinate of pixel # (scale to be between -R and R)
- # zx represents the real part of z.
- zy = scaled y coordinate of pixel # (scale to be between -R and R)
- # zy represents the imaginary part of z.
-
- iteration = 0
- max_iteration = 1000
-
- while (zx * zx + zy * zy < R**2  AND  iteration < max_iteration)
- {
- xtemp = zx * zx - zy * zy
- zy = 2 * zx * zy  + cy
- zx = xtemp + cx
-
- iteration = iteration + 1
- }
-
- if (iteration == max_iteration)
- return black;
- else
- return iteration;
-     */
     @Override
     int computeIteration(int px, int py) {
         var iteration = 0;

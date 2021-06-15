@@ -32,24 +32,50 @@ for each pixel (Px, Py) on the screen do
     static final float MIN_Y = -1f;
     static final float MAX_Y = 1f;
 
-    static final float FROM_X = -1f;
-    static final float TO_X = 0f;
+    static float fromX = -0.72f;
+    static float toX = -0.7f;
 
-    static final float FROM_Y = -0.5f;
-    static float TO_Y = (FRAME_SIZE_Y/FRAME_SIZE_X)*(TO_X-FROM_X)+FROM_Y;
+    static float fromY = -0.28f;
+    static float toY;
 
-    static final boolean FLAG_GRID = true;
-    static final int GRID_SIZE = 100;
+    static final boolean FLAG_GRID = false;
+    static final int GRID_SIZE = 400;
 
 
 
-    void setup() {
-        float r = Float.valueOf(0f+(FRAME_SIZE_Y+0f)/FRAME_SIZE_X);
-        TO_Y = (r)*(TO_X-FROM_X)+FROM_Y;
-        log("  r:"+r);
-        log("("+FRAME_SIZE_Y+"/"+FRAME_SIZE_X+")*("+TO_X+"-"+FROM_X+")+"+FROM_Y);
-        log("X "+FROM_X+" ; "+TO_X);
-        log("Y "+FROM_Y+" ; "+TO_Y);
+    static void setup() {
+        float r = (FRAME_SIZE_Y+0f)/FRAME_SIZE_X;
+
+        fromX = -0.72f;
+        toX = -0.7f;
+        fromY = -0.28f;
+
+        toY = (r)*(toX - fromX)+ fromY;
+        log("X "+ fromX +" ; "+ toX);
+        log("Y "+ fromY +" ; "+ toY);
+        log("  Frame ratio :"+r);
+
+        if (fromX < MIN_X) {
+            log("  - Starting X out of scope");
+        }
+        if (toX > MAX_X) {
+            log("  - Ending X out of scope");
+        }
+        if (fromY < MIN_Y) {
+            log("  - Starting Y out of scope");
+        }
+        if (toY > MAX_Y) {
+            log("  - Ending Y out of scope");
+        }
+
+        if ((toX < MIN_X) || (fromX > MAX_X)) {
+            log("  - All X out of scope");
+            System.exit(-1);
+        }
+        if ((toY < MIN_Y) || (fromY > MAX_Y)) {
+            log("  - All Y out of scope");
+            System.exit(-1);
+        }
     }
 
     void drawSet(Graphics g) {
@@ -57,16 +83,16 @@ for each pixel (Px, Py) on the screen do
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         long c = 0;
-        int loop_x = 0;
-        for (int px=0; px<FRAME_SIZE_X; px++) {
-            loop_x ++;
-            int loop_y = 0;
-            for (int py=0; py<FRAME_SIZE_Y; py++) {
-                int iteration = 0;
+        var loopX = 0;
+        for (var px=0; px<FRAME_SIZE_X; px++) {
+            loopX ++;
+            var loopY = 0;
+            for (var py=0; py<FRAME_SIZE_Y; py++) {
+                var iteration = 0;
                 float x = 0;
                 float y = 0;
-                float x0 = ((px * (TO_X - FROM_X)) / FRAME_SIZE_X) + FROM_X;
-                float y0 = ((py * (TO_Y - FROM_Y)) / FRAME_SIZE_Y) + FROM_Y;
+                float x0 = ((px * (toX - fromX)) / FRAME_SIZE_X) + fromX;
+                float y0 = ((py * (toY - fromY)) / FRAME_SIZE_Y) + fromY;
 
                 while (((x*x + y*y) < 4) && (iteration < MAX_ITERATION)) {
                     float xtemp = x*x - y*y + x0;
@@ -81,10 +107,10 @@ for each pixel (Px, Py) on the screen do
                 g.setColor(new Color(iteration, iteration, iteration));
                 g.drawLine(px, py, px, py);
 
-                loop_y++;
-                if ((loop_y >= GRID_SIZE) && (loop_x >= GRID_SIZE)) {
+                loopY++;
+                if ((loopY >= GRID_SIZE) && (loopX >= GRID_SIZE)) {
                     log("  x0:" + x0 + " y0:" + y0 + " iter:" + iteration);
-                    loop_y = 0;
+                    loopY = 0;
                     c++;
                     if (FLAG_GRID) {
                         g.setColor(Color.blue);
@@ -92,12 +118,11 @@ for each pixel (Px, Py) on the screen do
                     }
                 }
             }
-            if (loop_x >= GRID_SIZE) {
+            if (loopX >= GRID_SIZE) {
                 log("  -------");
-                loop_x = 0;
+                loopX = 0;
             }
         }
-        log(" Total log : "+c);
     }
 
     public Mandelbrot() throws HeadlessException {

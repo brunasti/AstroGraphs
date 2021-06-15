@@ -23,6 +23,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/CheckEligibilityResource.java">
           <value>
             <set />
@@ -103,6 +108,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/CrashException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/FractalBase.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/JuliaSet.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/Mandelbrot.java">
           <value>
             <set />
@@ -114,6 +134,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/ThreeBodies.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/FractalBase.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/JuliaSet.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/Mandelbrot.java">
           <value>
             <set />
           </value>

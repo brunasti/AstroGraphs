@@ -1,39 +1,50 @@
-package it.brunasti.graph;
+package it.brunasti.graph.fractals;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Mandelbrot extends JFrame {
+public class JuliaSet extends FractalBase {
 /**
-for each pixel (Px, Py) on the screen do
-    x0 := scaled x coordinate of pixel (scaled to lie in the Mandelbrot X scale (-2.5, 1))
-    y0 := scaled y coordinate of pixel (scaled to lie in the Mandelbrot Y scale (-1, 1))
-    x := 0.0
-    y := 0.0
-    iteration := 0
-    max_iteration := 1000
-    while (x*x + y*y ≤ 2*2 AND iteration < max_iteration) do
-        xtemp := x*x - y*y + x0
-        y := 2*x*y + y0
-        x := xtemp
-        iteration := iteration + 1
+ R = escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
 
-    color := palette[iteration]
-    plot(Px, Py, color)
+ for each pixel (x, y) on the screen, do:
+ {
+ zx = scaled x coordinate of pixel # (scale to be between -R and R)
+ # zx represents the real part of z.
+ zy = scaled y coordinate of pixel # (scale to be between -R and R)
+ # zy represents the imaginary part of z.
+
+ iteration = 0
+ max_iteration = 1000
+
+ while (zx * zx + zy * zy < R**2  AND  iteration < max_iteration)
+ {
+ xtemp = zx * zx - zy * zy
+ zy = 2 * zx * zy  + cy
+ zx = xtemp + cx
+
+ iteration = iteration + 1
+ }
+
+ if (iteration == max_iteration)
+ return black;
+ else
+ return iteration;
+ }
  */
 
     static final int FRAME_SIZE_X = 1200;
     static final int FRAME_SIZE_Y = 850;
     static final int MAX_ITERATION = 1000;
 
-    static final float MIN_X = -2.5f;
-    static final float MAX_X = 1f;
-
-    static final float MIN_Y = -1f;
-    static final float MAX_Y = 1f;
+//    static final float MIN_X = -2.5f;
+//    static final float MAX_X = 1f;
+//
+//    static final float MIN_Y = -1f;
+//    static final float MAX_Y = 1f;
 
     static final boolean FLAG_GRID = false;
-    static final int GRID_SIZE = 400;
+    static final int GRID_SIZE = 50;
 
     static final Color[] colors = new Color[MAX_ITERATION+1];
 
@@ -48,9 +59,9 @@ for each pixel (Px, Py) on the screen do
 
 
     static void setPrams() {
-        fromX = -0.7075f;
-        toX = -0.7073f;
-        fromY = -0.28f;
+//        fromX = MIN_X;
+//        toX = MAX_X;
+//        fromY = MIN_Y;
 
         colorOption = 1;
     }
@@ -224,7 +235,7 @@ for each pixel (Px, Py) on the screen do
         }
     }
 
-    public Mandelbrot() throws HeadlessException {
+    public JuliaSet() throws HeadlessException {
         super("Mandelbrot");
 
         getContentPane().setBackground(Color.BLACK);
@@ -236,26 +247,26 @@ for each pixel (Px, Py) on the screen do
 
 
 
-    private static void log(String msg) {
-        System.out.println(msg);
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        setPrams();
-        setup();
-        setColors(colorOption);
-        super.paint(g);
-        drawSet(g);
-        log("DONE");
-    }
+//    private static void log(String msg) {
+//        System.out.println(msg);
+//    }
+//
+//    @Override
+//    public void paint(Graphics g) {
+//        setPrams();
+//        setup();
+//        setColors(colorOption);
+//        super.paint(g);
+//        drawSet(g);
+//        log("DONE");
+//    }
 
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Mandelbrot().setVisible(true);
+                new JuliaSet().setVisible(true);
             }
         });
     }

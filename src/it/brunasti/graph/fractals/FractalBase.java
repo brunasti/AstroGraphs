@@ -32,52 +32,21 @@ public class FractalBase extends JFrame {
         // Put the parameter set in this overwritten method
     }
 
-//    void drawSet(Graphics g) {
-//        // Put the fractal calculation logic in this overwritten method
-//    }
-
-//    @Override
-
     int computeIteration(int px, int py) {
-        var iteration = 0;
-//
-//        float x = 0;
-//        float y = 0;
-//        float x0 = ((px * (toX - fromX)) / FRAME_SIZE_X) + fromX;
-//        float y0 = ((py * (toY - fromY)) / FRAME_SIZE_Y) + fromY;
-//
-//        while (((x*x + y*y) < 4) && (iteration < MAX_ITERATION)) {
-//            float xtemp = x*x - y*y + x0;
-//            y = 2*x*y + y0;
-//            x = xtemp;
-//            iteration = iteration + 1;
-//        }
+        // Put the fractal calculation logic in this overwritten method
+        var iteration = px + py;
+        if (iteration > MAX_ITERATION) {
+            iteration = MAX_ITERATION;
+        }
         return iteration;
     }
 
     void drawSet(Graphics g) {
-//        Graphics2D g2d = (Graphics2D) g;
-//        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
         var loopX = 0;
         for (var px=0; px<FRAME_SIZE_X; px++) {
             loopX ++;
             var loopY = 0;
             for (var py=0; py<FRAME_SIZE_Y; py++) {
-//                var iteration = 0;
-
-//                float x = 0;
-//                float y = 0;
-//                float x0 = ((px * (toX - fromX)) / FRAME_SIZE_X) + fromX;
-//                float y0 = ((py * (toY - fromY)) / FRAME_SIZE_Y) + fromY;
-//
-//                while (((x*x + y*y) < 4) && (iteration < MAX_ITERATION)) {
-//                    float xtemp = x*x - y*y + x0;
-//                    y = 2*x*y + y0;
-//                    x = xtemp;
-//                    iteration = iteration + 1;
-//                }
-
                 var iteration = computeIteration(px, py);
 
                 g.setColor(pickColor(iteration));
@@ -85,7 +54,6 @@ public class FractalBase extends JFrame {
 
                 loopY++;
                 if ((loopY >= gridSize) && (loopX >= gridSize)) {
-//                    log("  x0:" + x0 + " y0:" + y0 + " iter:" + iteration);
                     loopY = 0;
                     if (gridFlag) {
                         g.setColor(Color.blue);
@@ -94,7 +62,6 @@ public class FractalBase extends JFrame {
                 }
             }
             if (loopX >= gridSize) {
-//                log("  -------");
                 loopX = 0;
             }
         }

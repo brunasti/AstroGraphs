@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JuliaSet extends FractalBase {
-/**
+/*
  R = escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
 
  for each pixel (x, y) on the screen, do:
@@ -33,26 +33,45 @@ public class JuliaSet extends FractalBase {
  }
  */
 
+
     // escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
-    float r = 4f;
+    float radius = 4f;
     float cx = 1f;
     float cy = 0f;
 
 
     @Override
     void setPrams() {
-        r = 4f;
+        radius = 4f;
         cx = 0.3f;
-        cy = 0.1f;
+        cy = 0f;
 
-        fromX = minX;
-        toX = maxX;
-        fromY = minY;
+        fromX = -1;
+        toX = 1;
+        fromY = -0.7f;
 
-        colorOption = 0;
+        colorOption = 2;
 
-        gridFlag = true;
+        gridFlag = false;
         gridSize = 20;
+    }
+
+
+    // escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
+
+    @Override
+    void setup() {
+        super.setup();
+        log("radius "+radius);
+
+        if (radius<0) {
+            log("  - radius negative");
+            System.exit(-1);
+        }
+        if ((radius*radius - radius) < Math.sqrt((cx*cx) + (cy*cy))) {
+            log("  - radius too small : "+radius+" >= "+Math.sqrt((cx*cx) + (cy*cy)));
+            System.exit(-1);
+        }
     }
 
 
@@ -83,12 +102,10 @@ zx = scaled x coordinate of pixel # (scale to be between -R and R)
     int computeIteration(int px, int py) {
         var iteration = 0;
 
-        float x = 0;
-        float y = 0;
         float zx = ((px * (toX - fromX)) / FRAME_SIZE_X) + fromX;
         float zy = ((py * (toY - fromY)) / FRAME_SIZE_Y) + fromY;
 
-        while (((zx*zx + zy*zy) < r*r) && (iteration < MAX_ITERATION)) {
+        while (((zx*zx + zy*zy) < radius * radius) && (iteration < MAX_ITERATION)) {
             float xtemp = zx*zx - zy*zy;
             zy = 2*zx*zy + cy;
             zx = xtemp + cx;
@@ -99,6 +116,12 @@ zx = scaled x coordinate of pixel # (scale to be between -R and R)
 
     public JuliaSet() throws HeadlessException {
         super("Julia Set");
+
+        minX = -2f;
+        maxX = 2f;
+
+        minY = -1.4f;
+
     }
 
 

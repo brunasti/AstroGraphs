@@ -6,22 +6,22 @@ import java.awt.*;
 public class JuliaSet extends FractalBase {
 
     // escape radius  # choose R > 0 such that R**2 - R >= sqrt(cx**2 + cy**2)
-    float radius = 4f;
-    float cx = 1f;
+    float radius = 0f;
+    float cx = 0f;
     float cy = 0f;
 
 
     @Override
     void setPrams() {
-        radius = 4f;
-        cx = 0.3f;
-        cy = 0f;
+        radius = 20f;
+        cx = 0.5f;
+        cy = 0.3f;
 
-        fromX = 0.3f;
-        toX = 0.8f;
-        fromY = -0.4f;
+        fromX = -0.26f;
+        toX = -0.24f;
+        fromY = -0.48f;
 
-        colorOption = 2;
+        colorOption = 4;
 
         gridFlag = false;
         gridSize = 20;

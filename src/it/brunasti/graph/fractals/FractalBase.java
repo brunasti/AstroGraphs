@@ -42,12 +42,22 @@ public class FractalBase extends JFrame {
     }
 
     void drawSet(Graphics g) {
+        var minIter = Integer.MAX_VALUE;
+        var maxIter = Integer.MIN_VALUE;
+
         var loopX = 0;
+
         for (var px=0; px<FRAME_SIZE_X; px++) {
             loopX ++;
             var loopY = 0;
             for (var py=0; py<FRAME_SIZE_Y; py++) {
                 var iteration = computeIteration(px, py);
+                if (iteration > maxIter) {
+                    maxIter = iteration;
+                }
+                if (iteration < minIter) {
+                    minIter = iteration;
+                }
 
                 g.setColor(pickColor(iteration));
                 g.drawLine(px, py, px, py);
@@ -65,6 +75,8 @@ public class FractalBase extends JFrame {
                 loopX = 0;
             }
         }
+        log("     - min:"+minIter+" max:"+maxIter);
+
     }
 
 
@@ -146,6 +158,42 @@ public class FractalBase extends JFrame {
         }
     }
 
+
+    void setColorsOption4() {
+        var r=0;
+        var g=0;
+        var b=0;
+
+        var min = 9;
+        var max = 71;
+
+        for (var i=0; i< colors.length; i++) {
+            g=0;
+            b=0;
+            if (i < min) {
+                r=0;
+                g=0;
+                b=0;
+            } else if (i > max) {
+                r = 255;
+                g = 255;
+                b = 255;
+            } else {
+                r = Math.round((i-min) * (255/(max-min+0f)));
+                if (r > 255) {
+                    g = r - 255;
+                    if (g > 255) {
+                        g = 255;
+                    }
+                    b = g;
+                    r = 255;
+                }
+                log("  - c "+r+":"+g+":"+b);
+            }
+            colors[i] = new Color(r,g,b);
+        }
+    }
+
     void setColorsOption3() {
         setColorsOption2();
         var l = colors.length;
@@ -176,6 +224,9 @@ public class FractalBase extends JFrame {
                 break;
             case 3:
                 setColorsOption3();
+                break;
+            case 4:
+                setColorsOption4();
                 break;
             default:
                 setColorsDefault();

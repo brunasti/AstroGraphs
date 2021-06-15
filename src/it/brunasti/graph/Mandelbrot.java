@@ -48,8 +48,8 @@ for each pixel (Px, Py) on the screen do
 
 
     static void setPrams() {
-        fromX = -0.72f;
-        toX = -0.7f;
+        fromX = -0.7075f;
+        toX = -0.7073f;
         fromY = -0.28f;
 
         colorOption = 1;
@@ -83,6 +83,50 @@ for each pixel (Px, Py) on the screen do
         }
     }
 
+    static void setColorsOption2() {
+        var r=0;
+        var g=0;
+        var b=0;
+        for (var i=0; i< colors.length; i++) {
+            g=0;
+            b=0;
+            r = i*2;
+            if (i>122) {
+                r = 255-r;
+                if (r < 0) {
+                    r = 0;
+                }
+
+                if (i > 255) {
+                    g = (i-255) * 2;
+
+                    if (i > 377) {
+                        g = 255 - g;
+                        if (g < 0) {
+                            g = 0;
+                        }
+                    }
+
+                    if (i > 560) {
+                        b = (i-560) * 2;
+
+                        if (i > 682) {
+                            b = 255 - b;
+                            if (b < 0) {
+                                b = 0;
+                            }
+                        }
+
+
+                    }
+
+                }
+
+            }
+            colors[i] = new Color(r,g,b);
+        }
+    }
+
     static void setColorsDefault() {
         for (var i=0; i< colors.length; i++) {
             var iter = i;
@@ -97,6 +141,9 @@ for each pixel (Px, Py) on the screen do
         switch (colorOption) {
             case 1:
                 setColorsOption1();
+                break;
+            case 2:
+                setColorsOption2();
                 break;
             default:
                 setColorsDefault();

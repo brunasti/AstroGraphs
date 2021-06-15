@@ -15,7 +15,7 @@ public class SolarSystem extends JFrame {
 
     transient Body[] bodies;
 
-    int loops = 100000000;
+    int loops = 1000000;
 
     void setup() {
         bodies = new Body[15];

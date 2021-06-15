@@ -43,6 +43,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/GetFxQuoteResource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/ModifyEligibilityCurrencyResource.java">
           <value>
             <set />
@@ -68,6 +73,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/services/rates/FxRateLoader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/MainApplicationTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/db/DBTest.java">
           <value>
             <set />
@@ -84,6 +99,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/Body.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/Mandelbrot.java">
           <value>
             <set />
           </value>

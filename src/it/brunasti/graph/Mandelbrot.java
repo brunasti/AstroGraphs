@@ -164,7 +164,6 @@ for each pixel (Px, Py) on the screen do
                 if ((loopY >= GRID_SIZE) && (loopX >= GRID_SIZE)) {
                     log("  x0:" + x0 + " y0:" + y0 + " iter:" + iteration);
                     loopY = 0;
-                    c++;
                     if (FLAG_GRID) {
                         g.setColor(Color.blue);
                         g.drawLine(px, py, px, py);

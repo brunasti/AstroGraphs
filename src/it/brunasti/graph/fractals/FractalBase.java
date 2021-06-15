@@ -164,8 +164,8 @@ public class FractalBase extends JFrame {
         var g=0;
         var b=0;
 
-        var min = 9;
-        var max = 71;
+        var min = 4;
+        var max = 30;
 
         for (var i=0; i< colors.length; i++) {
             g=0;
@@ -180,13 +180,14 @@ public class FractalBase extends JFrame {
                 b = 255;
             } else {
                 r = Math.round((i-min) * (255/(max-min+0f)));
-                if (r > 255) {
+                if (r >= 255) {
                     g = r - 255;
-                    if (g > 255) {
-                        g = 255;
+                    r = 255;
+                    if (g >= 255) {
+                        g = 0;
+                        r = 0;
                     }
                     b = g;
-                    r = 255;
                 }
                 log("  - c "+r+":"+g+":"+b);
             }

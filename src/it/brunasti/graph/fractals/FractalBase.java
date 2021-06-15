@@ -8,30 +8,32 @@ public class FractalBase extends JFrame {
     static final int FRAME_SIZE_Y = 850;
     static final int MAX_ITERATION = 1000;
 
-    static float MIN_X = -2.5f;
-    static float MAX_X = 1f;
+    float minX = -2.5f;
+    float maxX = 1f;
 
-    static float MIN_Y = -1f;
-    static float MAX_Y = 1f;
+    float minY = -1f;
+    float maxY = 1f;
 
-    static boolean FLAG_GRID = false;
-    static int GRID_SIZE = 400;
+    boolean gridFlag = false;
+    int gridSize = 400;
 
-    static final Color[] colors = new Color[MAX_ITERATION+1];
+    Color[] colors = new Color[MAX_ITERATION+1];
 
 
-    static int colorOption = 1;
+    int colorOption = 1;
 
-    static float fromX = MIN_X;
-    static float toX = MAX_X;
+    float fromX = minX;
+    float toX = maxX;
 
-    static float fromY = MIN_Y;
-    static float toY;
+    float fromY = minY;
+    float toY;
 
     void setPrams() {
+        // Put the parameter set in this overwritten method
     }
 
     void drawSet(Graphics g) {
+        // Put the fractal calculation logic in this overwritten method
     }
 
 
@@ -114,6 +116,16 @@ public class FractalBase extends JFrame {
         }
     }
 
+    void setColorsOption3() {
+        setColorsOption2();
+        var l = colors.length;
+        var tmp = new Color[l];
+        for (var i=0; i< l; i++) {
+            tmp[l-i-1] = colors[i];
+        }
+        colors = tmp;
+    }
+
     void setColorsDefault() {
         for (var i=0; i< colors.length; i++) {
             var iter = i;
@@ -132,6 +144,9 @@ public class FractalBase extends JFrame {
             case 2:
                 setColorsOption2();
                 break;
+            case 3:
+                setColorsOption3();
+                break;
             default:
                 setColorsDefault();
                 break;
@@ -146,24 +161,24 @@ public class FractalBase extends JFrame {
         log("Y "+ fromY +" ; "+ toY);
         log("  Frame ratio :"+r);
 
-        if (fromX < MIN_X) {
+        if (fromX < minX) {
             log("  - Starting X out of scope");
         }
-        if (toX > MAX_X) {
+        if (toX > maxX) {
             log("  - Ending X out of scope");
         }
-        if (fromY < MIN_Y) {
+        if (fromY < minY) {
             log("  - Starting Y out of scope");
         }
-        if (toY > MAX_Y) {
+        if (toY > maxY) {
             log("  - Ending Y out of scope");
         }
 
-        if ((toX < MIN_X) || (fromX > MAX_X)) {
+        if ((toX < minX) || (fromX > maxX)) {
             log("  - All X out of scope");
             System.exit(-1);
         }
-        if ((toY < MIN_Y) || (fromY > MAX_Y)) {
+        if ((toY < minY) || (fromY > maxY)) {
             log("  - All Y out of scope");
             System.exit(-1);
         }

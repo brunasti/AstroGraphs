@@ -25,13 +25,14 @@ for each pixel (Px, Py) on the screen do
 
     @Override
     void setPrams() {
-        fromX = -0.7f;
-        toX = 0f;
+        fromX = -0.53f;
+        toX = -0.528f;
         fromY = 0.5f;
 
-        colorOption = 1;
+        colorOption = 3;
     }
 
+    @Override
     void setup() {
         float r = (FRAME_SIZE_Y+0f)/FRAME_SIZE_X;
 
@@ -40,24 +41,24 @@ for each pixel (Px, Py) on the screen do
         log("Y "+ fromY +" ; "+ toY);
         log("  Frame ratio :"+r);
 
-        if (fromX < MIN_X) {
+        if (fromX < minX) {
             log("  - Starting X out of scope");
         }
-        if (toX > MAX_X) {
+        if (toX > maxX) {
             log("  - Ending X out of scope");
         }
-        if (fromY < MIN_Y) {
+        if (fromY < minY) {
             log("  - Starting Y out of scope");
         }
-        if (toY > MAX_Y) {
+        if (toY > maxY) {
             log("  - Ending Y out of scope");
         }
 
-        if ((toX < MIN_X) || (fromX > MAX_X)) {
+        if ((toX < minX) || (fromX > maxX)) {
             log("  - All X out of scope");
             System.exit(-1);
         }
-        if ((toY < MIN_Y) || (fromY > MAX_Y)) {
+        if ((toY < minY) || (fromY > maxY)) {
             log("  - All Y out of scope");
             System.exit(-1);
         }
@@ -90,16 +91,16 @@ for each pixel (Px, Py) on the screen do
                 g.drawLine(px, py, px, py);
 
                 loopY++;
-                if ((loopY >= GRID_SIZE) && (loopX >= GRID_SIZE)) {
+                if ((loopY >= gridSize) && (loopX >= gridSize)) {
                     log("  x0:" + x0 + " y0:" + y0 + " iter:" + iteration);
                     loopY = 0;
-                    if (FLAG_GRID) {
+                    if (gridFlag) {
                         g.setColor(Color.blue);
                         g.drawLine(px, py, px, py);
                     }
                 }
             }
-            if (loopX >= GRID_SIZE) {
+            if (loopX >= gridSize) {
                 log("  -------");
                 loopX = 0;
             }
@@ -108,11 +109,6 @@ for each pixel (Px, Py) on the screen do
 
     public Mandelbrot() throws HeadlessException {
         super("Mandelbrot");
-
-        getContentPane().setBackground(Color.BLACK);
-        setSize(FRAME_SIZE_X, FRAME_SIZE_Y);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
     }
 
 

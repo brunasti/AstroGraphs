@@ -32,23 +32,80 @@ for each pixel (Px, Py) on the screen do
     static final float MIN_Y = -1f;
     static final float MAX_Y = 1f;
 
+    static final boolean FLAG_GRID = false;
+    static final int GRID_SIZE = 400;
+
+    static final Color[] colors = new Color[MAX_ITERATION+1];
+
+
+    static int colorOption = 1;
+
     static float fromX = -0.72f;
     static float toX = -0.7f;
 
     static float fromY = -0.28f;
     static float toY;
 
-    static final boolean FLAG_GRID = false;
-    static final int GRID_SIZE = 400;
 
-
-
-    static void setup() {
-        float r = (FRAME_SIZE_Y+0f)/FRAME_SIZE_X;
-
+    static void setPrams() {
         fromX = -0.72f;
         toX = -0.7f;
         fromY = -0.28f;
+
+        colorOption = 1;
+    }
+
+
+    Color pickColor(int iteration) {
+        return colors[iteration];
+    }
+
+    static void setColorsOption1() {
+        var r=0;
+        var g=0;
+        var b=0;
+        for (var i=0; i< colors.length; i++) {
+            g=0;
+            b=0;
+            r = i;
+            if (r>255) {
+                g = i - 255;
+                r = 255;
+                if (g > 255) {
+                    b = g - 255;
+                    g = 255;
+                    if (b > 255) {
+                        b = 255;
+                    }
+                }
+            }
+            colors[i] = new Color(r,g,b);
+        }
+    }
+
+    static void setColorsDefault() {
+        for (var i=0; i< colors.length; i++) {
+            var iter = i;
+            if (iter > 255) {
+                iter = 255;
+            }
+            colors[i] = new Color(iter,iter,iter);
+        }
+    }
+
+    static void setColors(int colorOption) {
+        switch (colorOption) {
+            case 1:
+                setColorsOption1();
+                break;
+            default:
+                setColorsDefault();
+                break;
+        }
+    }
+
+    static void setup() {
+        float r = (FRAME_SIZE_Y+0f)/FRAME_SIZE_X;
 
         toY = (r)*(toX - fromX)+ fromY;
         log("X "+ fromX +" ; "+ toX);
@@ -82,7 +139,6 @@ for each pixel (Px, Py) on the screen do
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        long c = 0;
         var loopX = 0;
         for (var px=0; px<FRAME_SIZE_X; px++) {
             loopX ++;
@@ -101,10 +157,7 @@ for each pixel (Px, Py) on the screen do
                     iteration = iteration + 1;
                 }
 
-                if (iteration > 255) {
-                    iteration = 255;
-                }
-                g.setColor(new Color(iteration, iteration, iteration));
+                g.setColor(pickColor(iteration));
                 g.drawLine(px, py, px, py);
 
                 loopY++;
@@ -143,7 +196,9 @@ for each pixel (Px, Py) on the screen do
 
     @Override
     public void paint(Graphics g) {
+        setPrams();
         setup();
+        setColors(colorOption);
         super.paint(g);
         drawSet(g);
         log("DONE");

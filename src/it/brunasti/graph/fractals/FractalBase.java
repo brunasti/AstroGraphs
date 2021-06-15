@@ -22,13 +22,13 @@ public class FractalBase extends JFrame {
 
     static int colorOption = 1;
 
-    static float fromX = -0.72f;
-    static float toX = -0.7f;
+    static float fromX = MIN_X;
+    static float toX = MAX_X;
 
-    static float fromY = -0.28f;
+    static float fromY = MIN_Y;
     static float toY;
 
-    static void setPrams() {
+    void setPrams() {
     }
 
     void drawSet(Graphics g) {
@@ -47,7 +47,7 @@ public class FractalBase extends JFrame {
         return colors[iteration];
     }
 
-    static void setColorsOption1() {
+    void setColorsOption1() {
         var r=0;
         var g=0;
         var b=0;
@@ -70,7 +70,7 @@ public class FractalBase extends JFrame {
         }
     }
 
-    static void setColorsOption2() {
+    void setColorsOption2() {
         var r=0;
         var g=0;
         var b=0;
@@ -114,7 +114,7 @@ public class FractalBase extends JFrame {
         }
     }
 
-    static void setColorsDefault() {
+    void setColorsDefault() {
         for (var i=0; i< colors.length; i++) {
             var iter = i;
             if (iter > 255) {
@@ -124,7 +124,7 @@ public class FractalBase extends JFrame {
         }
     }
 
-    static void setColors(int colorOption) {
+    void setColors(int colorOption) {
         switch (colorOption) {
             case 1:
                 setColorsOption1();
@@ -138,7 +138,7 @@ public class FractalBase extends JFrame {
         }
     }
 
-    static void setup() {
+    void setup() {
         float r = (FRAME_SIZE_Y+0f)/FRAME_SIZE_X;
 
         toY = (r)*(toX - fromX)+ fromY;

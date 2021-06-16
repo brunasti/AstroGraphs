@@ -18,12 +18,42 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/README.md">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/notes/OffLineModification-flow-new-opt_01.puml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/notes/OffLineModification-flow-new-opt_02.puml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/notes/OffLineModification-flow-new-opt_03.puml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/notes/OffLineModification-flow.puml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/notes/OffLineModification.puml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/integration-test/java/com/booking/payments/experience/fx/integration/CreateTokenTest.java">
           <value>
             <set />
           </value>
@@ -99,6 +129,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/resources/RegenerateTokenResourceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/test/java/com/booking/payments/experience/fx/services/TokenServiceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/pom.xml">
           <value>
             <set />
           </value>

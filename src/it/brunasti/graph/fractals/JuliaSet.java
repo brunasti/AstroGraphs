@@ -17,11 +17,15 @@ public class JuliaSet extends FractalBase {
         cx = 0.3f;
         cy = 0.3f;
 
-        fromX = -2f;
-        toX = 2f;
-        fromY = -1.5f;
-//        colorOption = 1;
+        fromX = -0f;
+        toX = 0.1f;
+        fromY = -0.95f;
         colorOption = 4;
+
+//        fromX = -2f;
+//        toX = 2f;
+//        fromY = -1.5f;
+//        colorOption = 4;
 
 //        fromX = -0f;
 //        toX = 0.1f;

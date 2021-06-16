@@ -13,16 +13,27 @@ public class JuliaSet extends FractalBase {
 
     @Override
     void setPrams() {
-//        // Eyes
-        radius = 2.5f;
-        cx = 0.26f;
+//        // Eye
+        radius = 25f;
+        cx = 0.256f;
         cy = 0f;
 
-        fromX = -0.2f;
+        fromX = 0f;
         toX = 0.2f;
-        fromY = -1f;
+        fromY = -0.95f;
         colorOption = 5;
 //        gridFlag = true;
+
+////        // Eyes
+//        radius = 2.5f;
+//        cx = 0.26f;
+//        cy = 0f;
+//
+//        fromX = -0.2f;
+//        toX = 0.2f;
+//        fromY = -1f;
+//        colorOption = 5;
+////        gridFlag = true;
 
 
 //        // Garofani

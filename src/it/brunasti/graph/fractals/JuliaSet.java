@@ -13,18 +13,40 @@ public class JuliaSet extends FractalBase {
 
     @Override
     void setPrams() {
-        radius = 1.5f;
-        cx = 0.3f;
+        radius = 2.5f;
+        cx = 0.4f;
         cy = 0.3f;
 
-        fromX = -0f;
-        toX = 0.1f;
-        fromY = -0.95f;
-        colorOption = 4;
+//        // Garofani
+//        radius = 2.5f;
+//        cx = 0.4f;
+//        cy = 0.3f;
+//
+//        fromX = -0.7f;
+//        toX = 0.5f;
+//        fromY = -1f;
+//        colorOption = 4;
+////        gridFlag = true;
 
-//        fromX = -2f;
-//        toX = 2f;
-//        fromY = -1.5f;
+//        // Red spirals
+//        radius = 2.5f;
+//        cx = 0.5f;
+//        cy = 0.3f;
+//
+//        fromX = -0.7f;
+//        toX = 0.3f;
+//        fromY = -0.9f;
+//        colorOption = 4;
+
+
+//        // Red Wave
+//        radius = 1.5f;
+//        cx = 0.3f;
+//        cy = 0.3f;
+//
+//        fromX = -0f;
+//        toX = 0.05f;
+//        fromY = -0.95f;
 //        colorOption = 4;
 
 //        fromX = -0f;
@@ -32,7 +54,7 @@ public class JuliaSet extends FractalBase {
 //        fromY = -0.95f;
 //        colorOption = 4;
 
-        gridFlag = false;
+//        gridFlag = false;
         gridSize = 20;
     }
 
@@ -79,7 +101,12 @@ public class JuliaSet extends FractalBase {
         minX = -2f;
         maxX = 2f;
 
+        fromX = minX;
+        toX = maxX;
+
         minY = -1.4f;
+
+        fromY = minY;
 
     }
 

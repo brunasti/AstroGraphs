@@ -165,7 +165,7 @@ public class FractalBase extends JFrame {
         var b=0;
 
         var min = 4;
-        var max = 25;
+        var max = 30;
 
         for (var i=0; i< colors.length; i++) {
             g=0;
@@ -176,12 +176,17 @@ public class FractalBase extends JFrame {
                 b=0;
             } else if (i > max * 7) {
                 r = 255;
-                g = max/2;
-                b = 3*max;
+                g = 25;
+                b = 100;
             } else if (i > max) {
                 r = 255;
-                g = i;
-                b = i;
+                if (i < 255) {
+                    g = i;
+                    b = i;
+                } else {
+                    g = r;
+                    b = r;
+                }
             } else {
                 r = Math.round((i-min) * (255/(max-min+0f)));
                 if (r >= 255) {
@@ -193,8 +198,54 @@ public class FractalBase extends JFrame {
                     }
                     b = g;
                 }
-                log("  - c "+r+":"+g+":"+b);
             }
+            log("  ["+i+"]- c "+r+":"+g+":"+b);
+            colors[i] = new Color(r,g,b);
+        }
+    }
+
+
+    void setColorsOption5() {
+        var r=0;
+        var g=0;
+        var b=0;
+
+        var min = 4;
+        var max = 250;
+
+        for (var i=0; i< colors.length; i++) {
+            g=0;
+            b=0;
+            if (i < min) {
+                r=0;
+                g=0;
+                b=0;
+            } else if (i > max * 7) {
+                r = 255;
+                g = 25;
+                b = 100;
+            } else if (i > max) {
+                r = 255;
+                if (i < 255) {
+                    g = i;
+                    b = i;
+                } else {
+                    g = r;
+                    b = r;
+                }
+            } else {
+                r = Math.round((i-min) * (255/(max-min+0f)));
+                if (r >= 255) {
+                    g = r - 255;
+                    r = 255;
+                    if (g >= 255) {
+                        g = 0;
+                        r = 0;
+                    }
+                    b = g;
+                }
+            }
+            log("  ["+i+"]- c "+r+":"+g+":"+b);
             colors[i] = new Color(r,g,b);
         }
     }
@@ -232,6 +283,9 @@ public class FractalBase extends JFrame {
                 break;
             case 4:
                 setColorsOption4();
+                break;
+            case 5:
+                setColorsOption5();
                 break;
             default:
                 setColorsDefault();

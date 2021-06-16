@@ -20,9 +20,9 @@ public class JuliaSet extends FractalBase {
 //        fromX = -0.26f;
 //        toX = -0.24f;
 //        fromY = -0.48f;
-        fromX = -0.1f;
+        fromX = -0f;
         toX = 0.1f;
-        fromY = -1f;
+        fromY = -0.95f;
 
         colorOption = 4;
 

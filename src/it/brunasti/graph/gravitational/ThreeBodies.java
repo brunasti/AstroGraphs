@@ -1,10 +1,9 @@
-package it.brunasti.graph;
+package it.brunasti.graph.gravitational;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

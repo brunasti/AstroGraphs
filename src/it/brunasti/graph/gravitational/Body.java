@@ -1,4 +1,4 @@
-package it.brunasti.graph;
+package it.brunasti.graph.gravitational;
 
 import java.awt.*;
 

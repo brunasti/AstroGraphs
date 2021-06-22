@@ -58,6 +58,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/domain/Token.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../FX/fx-api/fx-service/src/main/java/com/booking/payments/experience/fx/resources/CheckEligibilityResource.java">
           <value>
             <set />
@@ -178,6 +183,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/Complex.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/FractalBase.java">
           <value>
             <set />
@@ -189,6 +199,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/Mandelbrot.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/Newton.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/newtons/Complex.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/newtons/FractalViewer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/newtons/NewtonFractal.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/it/brunasti/graph/fractals/newtons/Polynomial.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../my_hackerrank/src/java/it/brunasti/hakerrank/BiggerIsGreater.java">
           <value>
             <set />
           </value>

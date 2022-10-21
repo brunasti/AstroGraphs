@@ -7,17 +7,17 @@ import java.awt.geom.Rectangle2D;
 
 public class SolarSystem extends JFrame {
 
-    static final int CX = 640;
-    static final int CY = 435;
-
     GraphUtils graphUtils;
 
-    double k = 0.00000001;
-    double sun = 1000;
+    static final int CENTER_X = 640;
+    static final int CENTER_Y = 435;
+
+    double grevitationalConstant = 0.00000001;
+    double sunMass = 1000;
 
     transient Body[] bodies;
 
-    int loops = 1000000;
+    int loops = 30000000;
 
     void setup() {
         bodies = new Body[15];
@@ -60,38 +60,38 @@ public class SolarSystem extends JFrame {
         b.c = Color.red;
         bodies[2] = b;
 
-//        b = new Body();
-//        b.name = "A1";
-//        b.m = 0.00001;
-//        b.x = 0;
-//        b.y = 140;
-//        b.sy = 140;
-//        b.vx = 0.000255;
-//        b.vy = 0;
-//        b.c = Color.lightGray;
-//        bodies[3] = b;
-//
-//        b = new Body();
-//        b.name = "A2";
-//        b.m = 0.00001;
-//        b.x = 5;
-//        b.y = 140;
-//        b.sy = 140;
-//        b.vx = 0.00026;
-//        b.vy = 0;
-//        b.c = Color.lightGray;
-//        bodies[4] = b;
-//
-//        b = new Body();
-//        b.name = "A3";
-//        b.m = 0.00001;
-//        b.x = 0;
-//        b.y = 145;
-//        b.sy = 145;
-//        b.vx = 0.000265;
-//        b.vy = 0;
-//        b.c = Color.lightGray;
-//        bodies[5] = b;
+        b = new Body();
+        b.name = "A1";
+        b.m = 0.00001;
+        b.x = 0;
+        b.y = 140;
+        b.sy = 140;
+        b.vx = 0.000255;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[3] = b;
+
+        b = new Body();
+        b.name = "A2";
+        b.m = 0.00001;
+        b.x = 5;
+        b.y = 140;
+        b.sy = 140;
+        b.vx = 0.00026;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[4] = b;
+
+        b = new Body();
+        b.name = "A3";
+        b.m = 0.00001;
+        b.x = 0;
+        b.y = 145;
+        b.sy = 145;
+        b.vx = 0.000265;
+        b.vy = 0;
+        b.c = Color.lightGray;
+        bodies[5] = b;
 
 
         b = new Body();
@@ -105,16 +105,16 @@ public class SolarSystem extends JFrame {
         b.c = Color.yellow;
         bodies[7] = b;
 
-//        b = new Body();
-//        b.name = "saturn";
-//        b.m = 1.3;
-//        b.x = 0;
-//        b.y = 480;
-//        b.sy = 480;
-//        b.vx = 0.000148;
-//        b.vy = 0;
-//        b.c = Color.magenta;
-//        bodies[8] = b;
+        b = new Body();
+        b.name = "saturn";
+        b.m = 1.3;
+        b.x = 0;
+        b.y = 480;
+        b.sy = 480;
+        b.vx = 0.000148;
+        b.vy = 0;
+        b.c = Color.magenta;
+        bodies[8] = b;
 
 
         b = new Body();
@@ -166,44 +166,25 @@ public class SolarSystem extends JFrame {
         super("Solar System");
 
         getContentPane().setBackground(Color.BLACK);
-        setSize(CX*2, CY*2);
+        setSize(CENTER_X *2, CENTER_Y *2);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        graphUtils = new GraphUtils(CX,CY);
+        graphUtils = new GraphUtils(CENTER_X, CENTER_Y);
     }
 
-//    void drawRoute(Graphics g, double ax, double ay, double bx, double by, Color c) {
-//        g.setColor(c);
-//
-//        long aX = CX + Math.round(ax);
-//        long aY = CY - Math.round(ay);
-//        long bX = CX + Math.round(bx);
-//        long bY = CY - Math.round(by);
-//
-//        int iX = Math.toIntExact(aX);
-//        int iY = Math.toIntExact(aY);
-//        int jX = Math.toIntExact(bX);
-//        int jY = Math.toIntExact(bY);
-//
-//        g.drawLine(iX, iY, jX, jY);
-//        g.setColor(Color.white);
-//        g.drawLine(iX, iY, iX, iY);
-//
-//    }
-//
     void drawGrid(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         g.setColor(Color.white);
 
-        g2d.draw(new Rectangle2D.Float(5, 25, (CX * 2f) - 15, (CY * 2f) - 30));
+        g2d.draw(new Rectangle2D.Float(5, 25, (CENTER_X * 2f) - 15, (CENTER_Y * 2f) - 30));
 
-        g.drawLine(5, CY, (CX * 2)-10, CY);
-        g.drawLine(CX, 25, CX, (CY * 2) - 5);
+        g.drawLine(5, CENTER_Y, (CENTER_X * 2)-10, CENTER_Y);
+        g.drawLine(CENTER_X, 25, CENTER_X, (CENTER_Y * 2) - 5);
 
-        Shape theCircle = new Ellipse2D.Double(CX - 200, CY - 200, 2.0 * 200, 2.0 * 200);
+        Shape theCircle = new Ellipse2D.Double(CENTER_X - 200, CENTER_Y - 200, 2.0 * 200, 2.0 * 200);
         g2d.draw(theCircle);
     }
 
@@ -234,7 +215,7 @@ public class SolarSystem extends JFrame {
                 throw new CrashException(body.name);
             }
             double f;
-            f = -(k * sun) / (d * d);
+            f = -(grevitationalConstant * sunMass) / (d * d);
 
             double fx;
             double fy;
@@ -253,7 +234,7 @@ public class SolarSystem extends JFrame {
                             throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
                         }
 
-                        f = -(k * others[i].m) / (d * d);
+                        f = -(grevitationalConstant * others[i].m) / (d * d);
 
                         fy = fy + f * (dy / d);
                         fx = fx + f * (dx / d);

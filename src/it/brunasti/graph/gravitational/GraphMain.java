@@ -31,6 +31,7 @@ public class GraphMain extends JFrame {
     private void drawAllOrbits(Graphics g) {
         super.paint(g);
         drawGrid(g);
+
         g.setColor(Color.blue);
         drawOrbit(g,1);
         g.setColor(Color.green);
@@ -43,6 +44,7 @@ public class GraphMain extends JFrame {
         drawOrbit(g,5);
         g.setColor(Color.red);
         drawOrbit(g,6);
+
         drawGrid(g);
         System.out.println("DONE");
     }
@@ -62,12 +64,12 @@ public class GraphMain extends JFrame {
 
         try {
             double startX = initialPlanetX;
-            double startY = initialPlanetY;
+            double startY;
             double velocityX = initialVelocityX;
             double velocityY = initialVelocityY;
 
-            double endX = 0;
-            double endY;
+            double endX = initialPlanetX;
+            double endY = initialPlanetY;
 
             int orbitsCounter = 0;
 
@@ -76,8 +78,8 @@ public class GraphMain extends JFrame {
                     orbitsCounter++;
                     System.out.println("  - orbit "+orbitsCounter+" "+velocityX+"|"+velocityY+" - L"+i);
                 }
-                endX = startX;
-                endY = startY;
+                startX = endX;
+                startY = endY;
 
                 double distance = Math.sqrt((startX * startX) + (startY * startY));
                 if (distance < 5) {
@@ -92,8 +94,8 @@ public class GraphMain extends JFrame {
                 double forceY = force * (startY / distance);
                 double forceX = force * (startX / distance);
 
-                startX = startX + velocityX;
-                startY = startY + velocityY;
+                endX = startX + velocityX;
+                endY = startY + velocityY;
 
                 velocityX = velocityX + forceX;
                 velocityY = velocityY + forceY;

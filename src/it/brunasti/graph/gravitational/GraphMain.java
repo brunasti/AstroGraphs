@@ -84,36 +84,13 @@ public class GraphMain extends JFrame {
                     System.out.println("Crash!....");
                     break;
                 }
-                double force = 0;
 
                 double correctionFactor = Math.pow(initialPlanetY,(gravitationType-2));
 
-                switch (gravitationType) {
-                    case 1:
-                        force = -(grevitationalConstant * sunMass) / (distance / correctionFactor);
-                        break;
-                    case 2:
-                        force = -(grevitationalConstant * sunMass) / (distance * distance);
-                        break;
-                    case 3:
-                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance / correctionFactor);
-                        break;
-                    case 4:
-                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance / correctionFactor);
-                        break;
-                    case 5:
-                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance / correctionFactor);
-                        break;
-                    case 6:
-                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance * distance / correctionFactor);
-                        break;
-                }
+                double force = forceCalculation(gravitationType, correctionFactor, distance);
 
-                double forceX;
-                double forceY;
-
-                forceY = force * (startY / distance);
-                forceX = force * (startX / distance);
+                double forceY = force * (startY / distance);
+                double forceX = force * (startX / distance);
 
                 startX = startX + velocityX;
                 startY = startY + velocityY;
@@ -130,6 +107,30 @@ public class GraphMain extends JFrame {
         }
     }
 
+    double forceCalculation(int gravitationType, double correctionFactor, double distance) {
+        double force = 0;
+        switch (gravitationType) {
+            case 1:
+                force = -(grevitationalConstant * sunMass) / (distance / correctionFactor);
+                break;
+            case 2:
+                force = -(grevitationalConstant * sunMass) / (distance * distance);
+                break;
+            case 3:
+                force = -(grevitationalConstant * sunMass) / (distance * distance * distance / correctionFactor);
+                break;
+            case 4:
+                force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance / correctionFactor);
+                break;
+            case 5:
+                force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance / correctionFactor);
+                break;
+            case 6:
+                force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance * distance / correctionFactor);
+                break;
+        }
+        return force;
+    }
 
     void drawGrid(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;

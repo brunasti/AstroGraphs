@@ -10,6 +10,8 @@ public class SolarSystem extends JFrame {
     static final int CX = 640;
     static final int CY = 435;
 
+    GraphUtils graphUtils;
+
     double k = 0.00000001;
     double sun = 1000;
 
@@ -167,27 +169,29 @@ public class SolarSystem extends JFrame {
         setSize(CX*2, CY*2);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        graphUtils = new GraphUtils(CX,CY);
     }
 
-    void drawRoute(Graphics g, double ax, double ay, double bx, double by, Color c) {
-        g.setColor(c);
-
-        long aX = CX + Math.round(ax);
-        long aY = CY - Math.round(ay);
-        long bX = CX + Math.round(bx);
-        long bY = CY - Math.round(by);
-
-        int iX = Math.toIntExact(aX);
-        int iY = Math.toIntExact(aY);
-        int jX = Math.toIntExact(bX);
-        int jY = Math.toIntExact(bY);
-
-        g.drawLine(iX, iY, jX, jY);
-        g.setColor(Color.white);
-        g.drawLine(iX, iY, iX, iY);
-
-    }
-
+//    void drawRoute(Graphics g, double ax, double ay, double bx, double by, Color c) {
+//        g.setColor(c);
+//
+//        long aX = CX + Math.round(ax);
+//        long aY = CY - Math.round(ay);
+//        long bX = CX + Math.round(bx);
+//        long bY = CY - Math.round(by);
+//
+//        int iX = Math.toIntExact(aX);
+//        int iY = Math.toIntExact(aY);
+//        int jX = Math.toIntExact(bX);
+//        int jY = Math.toIntExact(bY);
+//
+//        g.drawLine(iX, iY, jX, jY);
+//        g.setColor(Color.white);
+//        g.drawLine(iX, iY, iX, iY);
+//
+//    }
+//
     void drawGrid(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -263,7 +267,7 @@ public class SolarSystem extends JFrame {
             body.vx = vx + fx;
             body.vy = vy + fy;
 
-            drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
+            graphUtils.drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
         } catch (ArithmeticException ae) {
             log(ae.getMessage());
         }

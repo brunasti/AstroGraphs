@@ -7,135 +7,28 @@ import java.awt.geom.Rectangle2D;
 
 public class GraphMain extends JFrame {
 
-    final static int CX = 500;
-    final static int CY = 400;
+
+    final static int CENTRE_X = 500;
+    final static int CENTRE_Y = 400;
+
+    GraphUtils graphUtils;
 
     public GraphMain() {
         super("Multi dimensional gravitational fields");
 
         getContentPane().setBackground(Color.BLACK);
-        setSize(CX*2, CY*2);
+        setSize(CENTRE_X *2, CENTRE_Y *2);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-    }
 
-    void drawRoute(Graphics g, double ax, double ay, double bx, double by) {
-        long a_x = CX + Math.round(ax);
-        long a_y = CY - Math.round(ay);
-        long b_x = CX + Math.round(bx);
-        long b_y = CY - Math.round(by);
-
-        int i_x = Math.toIntExact(a_x);
-        int i_y = Math.toIntExact(a_y);
-        int j_x = Math.toIntExact(b_x);
-        int j_y = Math.toIntExact(b_y);
-
-        g.drawLine(i_x, i_y, j_x, j_y);
-    }
-
-    void drawGrid(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        g.setColor(Color.white);
-
-        g2d.draw(new Rectangle2D.Float(5, 25, CX * 2 - 15, CY * 2 - 30));
-
-        g.drawLine(5, CY, (CX * 2)-10, CY);
-        g.drawLine(CX, 25, CX, (CY * 2) - 5);
-
-        Shape theCircle = new Ellipse2D.Double(CX - Y, CY - Y, 2.0 * Y, 2.0 * Y);
-        g2d.draw(theCircle);
-
-        g.drawString("K : " + k, 10, 40);
-        g.drawString("Vx: " + Vx, 10, 55);
-        g.drawString("Vy: " + Vy, 10, 70);
-        g.drawString("L : " + loops, 10, 85);
-    }
-
-    // Equilibrio - around
-    double k = 0.00001;
-    double sun = 1;
-
-    double X = 0;
-    double Y = 300;
-    double Vx = 0.000181;
-    double Vy = 0;
-    int loops = 75000000;
-
-    void drawOrbit(Graphics g, int gType) {
-
-        try {
-            double ax = X;
-            double ay = Y;
-            double vx = Vx;
-            double vy = Vy;
-
-            double bx = 0;
-            double by;
-
-            int roundsCounter = 0;
-
-            for (int i=0; i<loops; i++) {
-                if ((bx < 0) && (ax > 0)) {
-                    roundsCounter++;
-                    System.out.println("  - round "+roundsCounter+" "+vx+"|"+vy+" - L"+i);
-                }
-                bx = ax;
-                by = ay;
-
-                double d = Math.sqrt((ax * ax) + (ay * ay));
-                if (d < 5) {
-                    System.out.println("Crash!....");
-                    break;
-                }
-                double f = 0;
-
-                double fK = Math.pow(Y,(gType-2));
-
-                switch (gType) {
-                    case 1:
-                        f = -(k * sun) / (d / fK);
-                        break;
-                    case 2:
-                        f = -(k * sun) / (d * d);
-                        break;
-                    case 3:
-                        f = -(k * sun) / (d * d * d / fK);
-                        break;
-                    case 4:
-                        f = -(k * sun) / (d * d * d * d / fK);
-                        break;
-                    case 5:
-                        f = -(k * sun) / (d * d * d * d * d / fK);
-                        break;
-                    case 6:
-                        f = -(k * sun) / (d * d * d * d * d * d / fK);
-                        break;
-                }
-
-                double fx;
-                double fy;
-
-                fy = f * (ay / d);
-                fx = f * (ax / d);
-
-                ax = ax + vx;
-                ay = ay + vy;
-
-                vx = vx + fx;
-                vy = vy + fy;
-
-                drawRoute(g, ax, ay, bx, by);
-            }
-            System.out.println("Done "+gType);
-
-        } catch (ArithmeticException ae) {
-            System.out.println(ae.getMessage());
-        }
+        graphUtils = new GraphUtils(CENTRE_X, CENTRE_Y);
     }
 
     public void paint(Graphics g) {
+        drawAllOrbits(g);
+    }
+
+    private void drawAllOrbits(Graphics g) {
         super.paint(g);
         drawGrid(g);
         g.setColor(Color.blue);
@@ -154,7 +47,112 @@ public class GraphMain extends JFrame {
         System.out.println("DONE");
     }
 
-    public static void main(String[] args) throws Exception {
+
+    // Equilibrio - around
+    double grevitationalConstant = 0.00001;
+    double sunMass = 1;
+
+    double initialPlanetX = 0;
+    double initialPlanetY = 300;
+    double initialVelocityX = 0.000181;
+    double initialVelocityY = 0;
+    int loops = 75000000;
+
+    void drawOrbit(Graphics g, int gravitationType) {
+
+        try {
+            double startX = initialPlanetX;
+            double startY = initialPlanetY;
+            double velocityX = initialVelocityX;
+            double velocityY = initialVelocityY;
+
+            double endX = 0;
+            double endY;
+
+            int orbitsCounter = 0;
+
+            for (int i=0; i<loops; i++) {
+                if ((endX < 0) && (startX > 0)) {
+                    orbitsCounter++;
+                    System.out.println("  - orbit "+orbitsCounter+" "+velocityX+"|"+velocityY+" - L"+i);
+                }
+                endX = startX;
+                endY = startY;
+
+                double distance = Math.sqrt((startX * startX) + (startY * startY));
+                if (distance < 5) {
+                    System.out.println("Crash!....");
+                    break;
+                }
+                double force = 0;
+
+                double correctionFactor = Math.pow(initialPlanetY,(gravitationType-2));
+
+                switch (gravitationType) {
+                    case 1:
+                        force = -(grevitationalConstant * sunMass) / (distance / correctionFactor);
+                        break;
+                    case 2:
+                        force = -(grevitationalConstant * sunMass) / (distance * distance);
+                        break;
+                    case 3:
+                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance / correctionFactor);
+                        break;
+                    case 4:
+                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance / correctionFactor);
+                        break;
+                    case 5:
+                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance / correctionFactor);
+                        break;
+                    case 6:
+                        force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance * distance / correctionFactor);
+                        break;
+                }
+
+                double forceX;
+                double forceY;
+
+                forceY = force * (startY / distance);
+                forceX = force * (startX / distance);
+
+                startX = startX + velocityX;
+                startY = startY + velocityY;
+
+                velocityX = velocityX + forceX;
+                velocityY = velocityY + forceY;
+
+                graphUtils.drawSegment(g, startX, startY, endX, endY);
+            }
+            System.out.println("Done "+gravitationType);
+
+        } catch (ArithmeticException ae) {
+            System.out.println(ae.getMessage());
+        }
+    }
+
+
+    void drawGrid(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+        g.setColor(Color.white);
+
+        g2d.draw(new Rectangle2D.Float(5, 25, CENTRE_X * 2 - 15, CENTRE_Y * 2 - 30));
+
+        g.drawLine(5, CENTRE_Y, (CENTRE_X * 2)-10, CENTRE_Y);
+        g.drawLine(CENTRE_X, 25, CENTRE_X, (CENTRE_Y * 2) - 5);
+
+        Shape theCircle = new Ellipse2D.Double(CENTRE_X - initialPlanetY, CENTRE_Y - initialPlanetY, 2.0 * initialPlanetY, 2.0 * initialPlanetY);
+        g2d.draw(theCircle);
+
+        g.drawString("K : " + grevitationalConstant, 10, 40);
+        g.drawString("Vx: " + initialVelocityX, 10, 55);
+        g.drawString("Vy: " + initialVelocityY, 10, 70);
+        g.drawString("L : " + loops, 10, 85);
+    }
+
+
+    public static void main(String[] args) {
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

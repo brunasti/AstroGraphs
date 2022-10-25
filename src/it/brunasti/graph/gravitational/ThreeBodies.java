@@ -12,12 +12,12 @@ public class ThreeBodies extends JFrame {
     static final int CX = 640;
     static final int CY = 435;
 
-    double k = 0.00000001;
-    double sun = 1000;
+    double k = 0.0000003;
+    double sun = 60;
 
     transient Body[] bodies;
 
-    int loops = 35000000;
+    int loops = 350000000;
 
     void setup() {
         bodies = new Body[5];
@@ -34,7 +34,7 @@ public class ThreeBodies extends JFrame {
         b.vx = 0.0006435;
         b.vy = -0.0000;
         b.c = Color.green;
-        bodies[0] = b;
+//        bodies[0] = b;
 
         b = new Body();
         b.name = "earth";
@@ -43,19 +43,19 @@ public class ThreeBodies extends JFrame {
         b.y = 50;
         b.sx = -0;
         b.sy = 50;
-        b.vx = 0.000446;
+        b.vx = 0.000496;
         b.vy = -0.0000;
         b.c = Color.blue;
-        bodies[1] = b;
+//        bodies[1] = b;
 
         b = new Body();
         b.name = "mars";
         b.m = 0.001;
         b.x = 0;
-        b.y = 75;
+        b.y = 80;
         b.sx = -0;
         b.sy = 75;
-        b.vx = 0.0004065;
+        b.vx = 0.0004365;
         b.vy = -0.0000;
         b.c = Color.red;
         bodies[2] = b;
@@ -66,7 +66,7 @@ public class ThreeBodies extends JFrame {
         b.x = 0;
         b.y = 250;
         b.sy = 250;
-        b.vx = 0.0002;
+        b.vx = 0.00025;
         b.vy = 0;
         b.c = Color.yellow;
         bodies[3] = b;
@@ -84,7 +84,9 @@ public class ThreeBodies extends JFrame {
 
 
         for (int x=0; x<bodies.length; x++) {
-            bodies[x].others = bodies;
+            if (bodies[x] != null) {
+                bodies[x].others = bodies;
+            }
         }
 //        Body[] others;
 //
@@ -161,68 +163,72 @@ public class ThreeBodies extends JFrame {
     }
 
     void drawOrbitStep(Graphics g, Body body, int loops) throws CrashException {
-        try {
-            double ax = body.x;
-            double ay = body.y;
-            double vx = body.vx;
-            double vy = body.vy;
-            double eX = body.bx;
-            double eY = body.by;
-            Body[] others = body.others;
+        if (body != null) {
+            try {
+                double ax = body.x;
+                double ay = body.y;
+                double vx = body.vx;
+                double vy = body.vy;
+                double eX = body.bx;
+                double eY = body.by;
+                Body[] others = body.others;
 
-            if ((eX < 0) && (ax > 0)) {
-                body.round = body.round + 1;
-                log("  "+body.name+" - round  "+body.round+" : "+vx+"|"+vy+" - L:"+loops);
-            }
-            if ((eX > 0) && (ax < 0)) {
-                log("  opposite "+body.name+" - Y : "+ay);
-            }
-            body.bx = ax;
-            body.by = ay;
+                if ((eX < 0) && (ax > 0)) {
+                    body.round = body.round + 1;
+                    log("  " + body.name + " - round  " + body.round + " : " + vx + "|" + vy + " - L:" + loops);
+                }
+                if ((eX > 0) && (ax < 0)) {
+                    log("  opposite " + body.name + " - Y : " + ay);
+                }
+                body.bx = ax;
+                body.by = ay;
 
 
-            double d = Math.sqrt((ax * ax) + (ay * ay));
-            if (d < 5) {
-                log("  "+body.name+"  Crash!....");
-                throw new CrashException(body.name);
-            }
-            double f;
-            f = -(k * sun) / (d * d);
+                double d = Math.sqrt((ax * ax) + (ay * ay));
+                if (d < 2) {
+                    log("  " + body.name + "  Crash!....");
+                    throw new CrashException(body.name);
+                }
+                double f;
+                f = -(k * sun) / (d * d);
 
-            double fx;
-            double fy;
+                double fx;
+                double fy;
 
-            fy = f * (ay / d);
-            fx = f * (ax / d);
+                fy = f * (ay / d);
+                fx = f * (ax / d);
 
-            if (others != null) {
-                for (int i=0; i< others.length; i++) {
-                    if (others[i] != body) {
-                        double dx = ax - others[i].x;
-                        double dy = ay - others[i].y;
-                        d = Math.sqrt((dx * dx) + (dy * dy));
-                        if (d < 1) {
-                            log("  " + body.name + "  Crashed on " + others[i].name + " L:" + loops);
-                            throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
+                if (others != null) {
+                    for (int i = 0; i < others.length; i++) {
+                        if (others[i] != body) {
+                            if (others[i] != null) {
+                                double dx = ax - others[i].x;
+                                double dy = ay - others[i].y;
+                                d = Math.sqrt((dx * dx) + (dy * dy));
+                                if (d < 1) {
+                                    log("  " + body.name + "  Crashed on " + others[i].name + " L:" + loops);
+                                    throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
+                                }
+
+                                f = -(k * others[i].m) / (d * d);
+
+                                fy = fy + f * (dy / d);
+                                fx = fx + f * (dx / d);
+                            }
                         }
-
-                        f = -(k * others[i].m) / (d * d);
-
-                        fy = fy + f * (dy / d);
-                        fx = fx + f * (dx / d);
                     }
                 }
+
+                body.x = ax + vx;
+                body.y = ay + vy;
+
+                body.vx = vx + fx;
+                body.vy = vy + fy;
+
+                drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
+            } catch (ArithmeticException ae) {
+                log(ae.getMessage());
             }
-
-            body.x = ax + vx;
-            body.y = ay + vy;
-
-            body.vx = vx + fx;
-            body.vy = vy + fy;
-
-            drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
-        } catch (ArithmeticException ae) {
-            log(ae.getMessage());
         }
     }
 

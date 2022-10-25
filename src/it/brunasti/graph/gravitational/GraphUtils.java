@@ -31,20 +31,7 @@ public class GraphUtils {
         g.setColor(c);
         drawSegment(g, ax, ay, bx, by);
 
-//        long aX = CX + Math.round(ax);
-//        long aY = CY - Math.round(ay);
-//        long bX = CX + Math.round(bx);
-//        long bY = CY - Math.round(by);
-//
-//        int iX = Math.toIntExact(aX);
-//        int iY = Math.toIntExact(aY);
-//        int jX = Math.toIntExact(bX);
-//        int jY = Math.toIntExact(bY);
-//
-//        g.drawLine(iX, iY, jX, jY);
-//        g.setColor(Color.white);
-//        g.drawLine(iX, iY, iX, iY);
-
+        g.setColor(Color.white);
         drawSegment(g, ax, ay, ax, ay);
     }
 

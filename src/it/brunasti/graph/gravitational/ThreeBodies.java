@@ -66,7 +66,7 @@ public class ThreeBodies extends JFrame {
         b.x = 0;
         b.y = 250;
         b.sy = 250;
-        b.vx = 0.00025;
+        b.vx = 0.000245;
         b.vy = 0;
         b.c = Color.yellow;
         bodies[3] = b;
@@ -77,7 +77,7 @@ public class ThreeBodies extends JFrame {
         b.x = 0;
         b.y = 500;
         b.sy = 500;
-        b.vx = 0.0001415;
+        b.vx = 0.000142;
         b.vy = 0;
         b.c = Color.magenta;
         bodies[4] = b;

@@ -22,119 +22,119 @@ public class SolarSystem extends JFrame {
     void setup() {
         bodies = new Body[15];
 
-        Body b;
+        Body body;
 
-        b = new Body();
-        b.name = "venus";
-        b.mass = 0.0025;
-        b.positionX = 0;
-        b.positionY = 35;
-        b.velocityX = 0.000535;
-        b.velocityY = -0.0000;
-        b.color = Color.green;
-        bodies[0] = b;
+        body = new Body();
+        body.name = "venus";
+        body.mass = 0.0025;
+        body.positionX = 0;
+        body.positionY = 35;
+        body.velocityX = 0.000535;
+        body.velocityY = -0.0000;
+        body.color = Color.green;
+        bodies[0] = body;
 
-        b = new Body();
-        b.name = "earth";
-        b.mass = 0.003;
-        b.positionX = 0;
-        b.positionY = 50;
-        b.velocityX = 0.000446;
-        b.velocityY = -0.0000;
-        b.color = Color.blue;
-        bodies[1] = b;
+        body = new Body();
+        body.name = "earth";
+        body.mass = 0.003;
+        body.positionX = 0;
+        body.positionY = 50;
+        body.velocityX = 0.000446;
+        body.velocityY = -0.0000;
+        body.color = Color.blue;
+        bodies[1] = body;
 
-        b = new Body();
-        b.name = "mars";
-        b.mass = 0.001;
-        b.positionX = 0;
-        b.positionY = 75;
-        b.velocityX = 0.000365;
-        b.velocityY = -0.0000;
-        b.color = Color.red;
-        bodies[2] = b;
+        body = new Body();
+        body.name = "mars";
+        body.mass = 0.001;
+        body.positionX = 0;
+        body.positionY = 75;
+        body.velocityX = 0.000365;
+        body.velocityY = -0.0000;
+        body.color = Color.red;
+        bodies[2] = body;
 
-        b = new Body();
-        b.name = "A1";
-        b.mass = 0.00001;
-        b.positionX = 0;
-        b.positionY = 140;
-        b.velocityX = 0.000255;
-        b.velocityY = 0;
-        b.color = Color.lightGray;
-        bodies[3] = b;
+        body = new Body();
+        body.name = "A1";
+        body.mass = 0.00001;
+        body.positionX = 0;
+        body.positionY = 140;
+        body.velocityX = 0.000255;
+        body.velocityY = 0;
+        body.color = Color.lightGray;
+        bodies[3] = body;
 
-        b = new Body();
-        b.name = "A2";
-        b.mass = 0.00001;
-        b.positionX = 5;
-        b.positionY = 140;
-        b.velocityX = 0.00026;
-        b.velocityY = 0;
-        b.color = Color.lightGray;
-        bodies[4] = b;
+        body = new Body();
+        body.name = "A2";
+        body.mass = 0.00001;
+        body.positionX = 5;
+        body.positionY = 140;
+        body.velocityX = 0.00026;
+        body.velocityY = 0;
+        body.color = Color.lightGray;
+        bodies[4] = body;
 
-        b = new Body();
-        b.name = "A3";
-        b.mass = 0.00001;
-        b.positionX = 0;
-        b.positionY = 145;
-        b.velocityX = 0.000265;
-        b.velocityY = 0;
-        b.color = Color.lightGray;
-        bodies[5] = b;
-
-
-        b = new Body();
-        b.name = "jupiter";
-        b.mass = 3;
-        b.positionX = 0;
-        b.positionY = 250;
-        b.velocityX = 0.0002;
-        b.velocityY = 0;
-        b.color = Color.yellow;
-        bodies[7] = b;
-
-        b = new Body();
-        b.name = "saturn";
-        b.mass = 1.3;
-        b.positionX = 0;
-        b.positionY = 480;
-        b.velocityX = 0.000148;
-        b.velocityY = 0;
-        b.color = Color.magenta;
-        bodies[8] = b;
+        body = new Body();
+        body.name = "A3";
+        body.mass = 0.00001;
+        body.positionX = 0;
+        body.positionY = 145;
+        body.velocityX = 0.000265;
+        body.velocityY = 0;
+        body.color = Color.lightGray;
+        bodies[5] = body;
 
 
-        b = new Body();
-        b.name = "C1";
-        b.mass = 0.0000001;
-        b.positionX = 0;
-        b.positionY = 345;
-        b.velocityX = 0.0000265;
-        b.velocityY = 0;
-        b.color = Color.lightGray;
-        bodies[10] = b;
+        body = new Body();
+        body.name = "jupiter";
+        body.mass = 3;
+        body.positionX = 0;
+        body.positionY = 250;
+        body.velocityX = 0.0002;
+        body.velocityY = 0;
+        body.color = Color.yellow;
+        bodies[7] = body;
 
-        b = new Body();
-        b.name = "C2";
-        b.mass = 0.0000001;
-        b.positionX = 300;
-        b.positionY = 200;
-        b.velocityX = 0.0000365;
-        b.velocityY = -0.00002;
-        b.color = Color.lightGray;
-        bodies[11] = b;
+        body = new Body();
+        body.name = "saturn";
+        body.mass = 1.3;
+        body.positionX = 0;
+        body.positionY = 480;
+        body.velocityX = 0.000148;
+        body.velocityY = 0;
+        body.color = Color.magenta;
+        bodies[8] = body;
 
-        b = new Body();
-        b.name = "C3";
-        b.mass = 0.0000001;
-        b.positionX = 400;
-        b.positionY = -200;
-        b.velocityX = 0.0000265;
-        b.velocityY = 0.000051;
-        b.color = Color.lightGray;
-        bodies[12] = b;
+
+        body = new Body();
+        body.name = "C1";
+        body.mass = 0.0000001;
+        body.positionX = 0;
+        body.positionY = 345;
+        body.velocityX = 0.0000265;
+        body.velocityY = 0;
+        body.color = Color.lightGray;
+        bodies[10] = body;
+
+        body = new Body();
+        body.name = "C2";
+        body.mass = 0.0000001;
+        body.positionX = 300;
+        body.positionY = 200;
+        body.velocityX = 0.0000365;
+        body.velocityY = -0.00002;
+        body.color = Color.lightGray;
+        bodies[11] = body;
+
+        body = new Body();
+        body.name = "C3";
+        body.mass = 0.0000001;
+        body.positionX = 400;
+        body.positionY = -200;
+        body.velocityX = 0.0000265;
+        body.velocityY = 0.000051;
+        body.color = Color.lightGray;
+        bodies[12] = body;
 
         for (int x=0; x<bodies.length; x++) {
             if (bodies[x] != null) {
@@ -170,7 +170,7 @@ public class SolarSystem extends JFrame {
         g2d.draw(theCircle);
     }
 
-    void drawOrbitStep(Graphics g, Body body, int loops) throws CrashException {
+    void computeAndDrawOrbitStep(Graphics g, Body body, int loops) throws CrashException {
         try {
             double ax = body.positionX;
             double ay = body.positionY;
@@ -237,12 +237,12 @@ public class SolarSystem extends JFrame {
     }
 
 
-    void drawOrbit(Graphics g) {
+    void computeAndDrawOrbits(Graphics g) {
         try {
             for (int i=0; i<loops; i++) {
                 for (int b = 0; b<bodies.length; b++) {
                     if (bodies[b] != null) {
-                        drawOrbitStep(g, bodies[b], i);
+                        computeAndDrawOrbitStep(g, bodies[b], i);
                     }
                 }
             }
@@ -258,7 +258,7 @@ public class SolarSystem extends JFrame {
         setup();
         super.paint(g);
         drawGrid(g);
-        drawOrbit(g);
+        computeAndDrawOrbits(g);
         drawGrid(g);
         log("DONE");
     }

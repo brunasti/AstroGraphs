@@ -14,8 +14,8 @@ public class ThreeBodies extends JFrame {
 
     GraphUtils graphUtils;
 
-    double k = 0.0000003;
-    double sun = 60;
+    double gravitationalConstant = 0.0000003;
+    double sunMass = 60;
 
     transient Body[] bodies;
 
@@ -137,7 +137,7 @@ public class ThreeBodies extends JFrame {
                     throw new CrashException(body.name);
                 }
                 double f;
-                f = -(k * sun) / (d * d);
+                f = -(gravitationalConstant * sunMass) / (d * d);
 
                 double fx;
                 double fy;
@@ -157,7 +157,7 @@ public class ThreeBodies extends JFrame {
                                     throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
                                 }
 
-                                f = -(k * others[i].mass) / (d * d);
+                                f = -(gravitationalConstant * others[i].mass) / (d * d);
 
                                 fy = fy + f * (dy / d);
                                 fx = fx + f * (dx / d);
@@ -180,7 +180,7 @@ public class ThreeBodies extends JFrame {
     }
 
 
-    void drawOrbit(Graphics g) {
+    void computeAndDrawOrbits(Graphics g) {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd - HH:mm:ss z");
         long startTime = System.currentTimeMillis();
         Date date = new Date(startTime);
@@ -209,7 +209,7 @@ public class ThreeBodies extends JFrame {
         setup();
         super.paint(g);
         drawGrid(g);
-        drawOrbit(g);
+        computeAndDrawOrbits(g);
         drawGrid(g);
         log("DONE");
     }

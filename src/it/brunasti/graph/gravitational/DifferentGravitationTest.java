@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class GraphMain extends JFrame {
+public class DifferentGravitationTest extends JFrame {
 
 
     final static int CENTRE_X = 500;
@@ -13,7 +13,17 @@ public class GraphMain extends JFrame {
 
     GraphUtils graphUtils;
 
-    public GraphMain() {
+    double gravitationalConstant = 0.00001;
+    double sunMass = 1;
+
+    double initialPlanetX = 0;
+    double initialPlanetY = 300;
+    double initialVelocityX = 0.000181;
+    double initialVelocityY = 0;
+    int loops = 75000000;
+
+
+    public DifferentGravitationTest() {
         super("Multi dimensional gravitational fields");
 
         getContentPane().setBackground(Color.BLACK);
@@ -24,6 +34,7 @@ public class GraphMain extends JFrame {
         graphUtils = new GraphUtils(CENTRE_X, CENTRE_Y);
     }
 
+    @Override
     public void paint(Graphics g) {
         drawAllOrbits(g);
     }
@@ -33,34 +44,23 @@ public class GraphMain extends JFrame {
         drawGrid(g);
 
         g.setColor(Color.blue);
-        drawOrbit(g,1);
+        computeAndDrawOrbits(g,1);
         g.setColor(Color.green);
-        drawOrbit(g,2);
+        computeAndDrawOrbits(g,2);
         g.setColor(Color.yellow);
-        drawOrbit(g,3);
+        computeAndDrawOrbits(g,3);
         g.setColor(Color.orange);
-        drawOrbit(g,4);
+        computeAndDrawOrbits(g,4);
         g.setColor(Color.pink);
-        drawOrbit(g,5);
+        computeAndDrawOrbits(g,5);
         g.setColor(Color.red);
-        drawOrbit(g,6);
+        computeAndDrawOrbits(g,6);
 
         drawGrid(g);
         System.out.println("DONE");
     }
 
-
-    // Equilibrio - around
-    double grevitationalConstant = 0.00001;
-    double sunMass = 1;
-
-    double initialPlanetX = 0;
-    double initialPlanetY = 300;
-    double initialVelocityX = 0.000181;
-    double initialVelocityY = 0;
-    int loops = 75000000;
-
-    void drawOrbit(Graphics g, int gravitationType) {
+    void computeAndDrawOrbits(Graphics g, int gravitationType) {
 
         try {
             double startX = initialPlanetX;
@@ -113,22 +113,22 @@ public class GraphMain extends JFrame {
         double force = 0;
         switch (gravitationType) {
             case 1:
-                force = -(grevitationalConstant * sunMass) / (distance / correctionFactor);
+                force = -(gravitationalConstant * sunMass) / (distance / correctionFactor);
                 break;
             case 2:
-                force = -(grevitationalConstant * sunMass) / (distance * distance);
+                force = -(gravitationalConstant * sunMass) / (distance * distance);
                 break;
             case 3:
-                force = -(grevitationalConstant * sunMass) / (distance * distance * distance / correctionFactor);
+                force = -(gravitationalConstant * sunMass) / (distance * distance * distance / correctionFactor);
                 break;
             case 4:
-                force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance / correctionFactor);
+                force = -(gravitationalConstant * sunMass) / (distance * distance * distance * distance / correctionFactor);
                 break;
             case 5:
-                force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance / correctionFactor);
+                force = -(gravitationalConstant * sunMass) / (distance * distance * distance * distance * distance / correctionFactor);
                 break;
             case 6:
-                force = -(grevitationalConstant * sunMass) / (distance * distance * distance * distance * distance * distance / correctionFactor);
+                force = -(gravitationalConstant * sunMass) / (distance * distance * distance * distance * distance * distance / correctionFactor);
                 break;
         }
         return force;
@@ -148,7 +148,7 @@ public class GraphMain extends JFrame {
         Shape theCircle = new Ellipse2D.Double(CENTRE_X - initialPlanetY, CENTRE_Y - initialPlanetY, 2.0 * initialPlanetY, 2.0 * initialPlanetY);
         g2d.draw(theCircle);
 
-        g.drawString("K : " + grevitationalConstant, 10, 40);
+        g.drawString("K : " + gravitationalConstant, 10, 40);
         g.drawString("Vx: " + initialVelocityX, 10, 55);
         g.drawString("Vy: " + initialVelocityY, 10, 70);
         g.drawString("L : " + loops, 10, 85);
@@ -160,7 +160,7 @@ public class GraphMain extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GraphMain().setVisible(true);
+                new DifferentGravitationTest().setVisible(true);
             }
         });
     }

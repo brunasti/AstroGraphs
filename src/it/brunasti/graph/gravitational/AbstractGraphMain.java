@@ -47,5 +47,8 @@ public abstract class AbstractGraphMain extends JFrame {
         return g2d;
     }
 
+    protected static void log(String msg) {
+        System.out.println(msg);
+    }
 
 }

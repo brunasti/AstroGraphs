@@ -5,13 +5,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class DifferentGravitationTest extends JFrame {
-
-
-    final static int CENTRE_X = 500;
-    final static int CENTRE_Y = 400;
-
-    GraphUtils graphUtils;
+public class DifferentGravitationTest extends AbstractGraphMain {
 
     double gravitationalConstant = 0.00001;
     double sunMass = 1;
@@ -24,14 +18,7 @@ public class DifferentGravitationTest extends JFrame {
 
 
     public DifferentGravitationTest() {
-        super("Multi dimensional gravitational fields");
-
-        getContentPane().setBackground(Color.BLACK);
-        setSize(CENTRE_X *2, CENTRE_Y *2);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        graphUtils = new GraphUtils(CENTRE_X, CENTRE_Y);
+        super("Multi dimensional gravitational fields", 500, 430);
     }
 
     @Override
@@ -134,29 +121,21 @@ public class DifferentGravitationTest extends JFrame {
         return force;
     }
 
-    void drawGrid(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        g.setColor(Color.white);
-
-        g2d.draw(new Rectangle2D.Float(5, 25, CENTRE_X * 2 - 15, CENTRE_Y * 2 - 30));
-
-        g.drawLine(5, CENTRE_Y, (CENTRE_X * 2)-10, CENTRE_Y);
-        g.drawLine(CENTRE_X, 25, CENTRE_X, (CENTRE_Y * 2) - 5);
-
-        Shape theCircle = new Ellipse2D.Double(CENTRE_X - initialPlanetY, CENTRE_Y - initialPlanetY, 2.0 * initialPlanetY, 2.0 * initialPlanetY);
+    Graphics2D drawGrid(Graphics g) {
+        Graphics2D g2d = super.drawGrid(g);
+        Shape theCircle = new Ellipse2D.Double(CENTER_X - initialPlanetY, CENTER_Y - initialPlanetY, 2.0 * initialPlanetY, 2.0 * initialPlanetY);
         g2d.draw(theCircle);
 
         g.drawString("K : " + gravitationalConstant, 10, 40);
         g.drawString("Vx: " + initialVelocityX, 10, 55);
         g.drawString("Vy: " + initialVelocityY, 10, 70);
         g.drawString("L : " + loops, 10, 85);
+
+        return g2d;
     }
 
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

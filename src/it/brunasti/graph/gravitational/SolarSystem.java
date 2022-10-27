@@ -5,12 +5,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class SolarSystem extends JFrame {
-
-    GraphUtils graphUtils;
-
-    static final int CENTER_X = 640;
-    static final int CENTER_Y = 435;
+public class SolarSystem extends AbstractGraphMain {
 
     double gravitationalConstant = 0.00000001;
     double sunMass = 1000;
@@ -145,29 +140,14 @@ public class SolarSystem extends JFrame {
 
 
     public SolarSystem() {
-        super("Solar System");
-
-        getContentPane().setBackground(Color.BLACK);
-        setSize(CENTER_X *2, CENTER_Y *2);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        graphUtils = new GraphUtils(CENTER_X, CENTER_Y);
+        super("Solar System", 640, 430);
     }
 
-    void drawGrid(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        g.setColor(Color.white);
-
-        g2d.draw(new Rectangle2D.Float(5, 25, (CENTER_X * 2f) - 15, (CENTER_Y * 2f) - 30));
-
-        g.drawLine(5, CENTER_Y, (CENTER_X * 2)-10, CENTER_Y);
-        g.drawLine(CENTER_X, 25, CENTER_X, (CENTER_Y * 2) - 5);
-
+    Graphics2D drawGrid(Graphics g) {
+        Graphics2D g2d = super.drawGrid(g);
         Shape theCircle = new Ellipse2D.Double(CENTER_X - 200, CENTER_Y - 200, 2.0 * 200, 2.0 * 200);
         g2d.draw(theCircle);
+        return g2d;
     }
 
     void computeAndDrawOrbitStep(Graphics g, Body body, int loops) throws CrashException {
@@ -236,7 +216,6 @@ public class SolarSystem extends JFrame {
         }
     }
 
-
     void computeAndDrawOrbits(Graphics g) {
         try {
             for (int i=0; i<loops; i++) {
@@ -261,10 +240,6 @@ public class SolarSystem extends JFrame {
         computeAndDrawOrbits(g);
         drawGrid(g);
         log("DONE");
-    }
-
-    private static void log(String msg) {
-        System.out.println(msg);
     }
 
     public static void main(String[] args) {

@@ -8,9 +8,6 @@ import java.util.Date;
 
 public class ThreeBodies extends AbstractGraphMain {
 
-    static final int MY_CENTER_X = 680;
-    static final int MY_CENTER_Y = 450;
-
     double gravitationalConstant = 0.0000003;
     double sunMass = 60;
 
@@ -81,7 +78,7 @@ public class ThreeBodies extends AbstractGraphMain {
     }
 
     public ThreeBodies() {
-        super("Three Bodies Problem", MY_CENTER_X, MY_CENTER_Y);
+        super("Three Bodies Problem", 680, 430);
     }
 
     Graphics2D drawGrid(Graphics g) {
@@ -161,7 +158,6 @@ public class ThreeBodies extends AbstractGraphMain {
         }
     }
 
-
     void computeAndDrawOrbits(Graphics g) {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd - HH:mm:ss z");
         long startTime = System.currentTimeMillis();
@@ -194,10 +190,6 @@ public class ThreeBodies extends AbstractGraphMain {
         computeAndDrawOrbits(g);
         drawGrid(g);
         log("DONE");
-    }
-
-    private static void log(String msg) {
-        System.out.println(msg);
     }
 
     public static void main(String[] args) {

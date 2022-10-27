@@ -3,16 +3,13 @@ package it.brunasti.graph.gravitational;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ThreeBodies extends JFrame {
+public class ThreeBodies extends AbstractGraphMain {
 
-    static final int CENTER_X = 640;
-    static final int CENTER_Y = 435;
-
-    GraphUtils graphUtils;
+    static final int MY_CENTER_X = 680;
+    static final int MY_CENTER_Y = 450;
 
     double gravitationalConstant = 0.0000003;
     double sunMass = 60;
@@ -48,7 +45,7 @@ public class ThreeBodies extends JFrame {
 
         body = new Body();
         body.name = "mars";
-        body.mass = 0.001;
+        body.mass = 0.002;
         body.positionX = 0;
         body.positionY = 80;
         body.velocityX = 0.0004365;
@@ -58,7 +55,7 @@ public class ThreeBodies extends JFrame {
 
         body = new Body();
         body.name = "jupiter";
-        body.mass = 5;
+        body.mass = 8;
         body.positionX = 0;
         body.positionY = 250;
         body.velocityX = 0.000245;
@@ -84,29 +81,14 @@ public class ThreeBodies extends JFrame {
     }
 
     public ThreeBodies() {
-        super("Three Bodies Problem");
-
-        getContentPane().setBackground(Color.BLACK);
-        setSize(CENTER_X *2, CENTER_Y *2);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        graphUtils = new GraphUtils(CENTER_X, CENTER_Y);
+        super("Three Bodies Problem", MY_CENTER_X, MY_CENTER_Y);
     }
 
-    void drawGrid(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        g.setColor(Color.white);
-
-        g2d.draw(new Rectangle2D.Float(5, 25, (CENTER_X * 2f) - 15, (CENTER_Y * 2f) - 30));
-
-        g.drawLine(5, CENTER_Y, (CENTER_X * 2)-10, CENTER_Y);
-        g.drawLine(CENTER_X, 25, CENTER_X, (CENTER_Y * 2) - 5);
-
+    Graphics2D drawGrid(Graphics g) {
+        Graphics2D g2d = super.drawGrid(g);
         Shape theCircle = new Ellipse2D.Double(CENTER_X - 200, CENTER_Y - 200, 2.0 * 200, 2.0 * 200);
         g2d.draw(theCircle);
+        return g2d;
     }
 
     void drawOrbitStep(Graphics g, Body body, int loops) throws CrashException {

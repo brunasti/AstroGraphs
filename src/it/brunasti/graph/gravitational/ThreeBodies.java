@@ -3,235 +3,166 @@ package it.brunasti.graph.gravitational;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ThreeBodies extends JFrame {
+public class ThreeBodies extends AbstractGraphMain {
 
-    static final int CX = 640;
-    static final int CY = 435;
-
-    double k = 0.00000001;
-    double sun = 1000;
+    double gravitationalConstant = 0.0000003;
+    double sunMass = 60;
 
     transient Body[] bodies;
 
-    int loops = 35000000;
+    int loops = 350000000;
 
     void setup() {
         bodies = new Body[5];
 
-        Body b;
+        Body body;
 
-        b = new Body();
-        b.name = "venus";
-        b.m = 0.0025;
-        b.x = 2;
-        b.y = 35;
-        b.sx = 2;
-        b.sy = 35;
-        b.vx = 0.0006435;
-        b.vy = -0.0000;
-        b.c = Color.green;
-        bodies[0] = b;
+        body = new Body();
+        body.name = "venus";
+        body.mass = 0.0025;
+        body.positionX = 2;
+        body.positionY = 35;
+        body.velocityX = 0.0006435;
+        body.velocityY = -0.0000;
+        body.color = Color.green;
+//        bodies[0] = b;
 
-        b = new Body();
-        b.name = "earth";
-        b.m = 0.003;
-        b.x = 0;
-        b.y = 50;
-        b.sx = -0;
-        b.sy = 50;
-        b.vx = 0.000446;
-        b.vy = -0.0000;
-        b.c = Color.blue;
-        bodies[1] = b;
+        body = new Body();
+        body.name = "earth";
+        body.mass = 0.003;
+        body.positionX = 0;
+        body.positionY = 50;
+        body.velocityX = 0.000496;
+        body.velocityY = -0.0000;
+        body.color = Color.blue;
+//        bodies[1] = b;
 
-        b = new Body();
-        b.name = "mars";
-        b.m = 0.001;
-        b.x = 0;
-        b.y = 75;
-        b.sx = -0;
-        b.sy = 75;
-        b.vx = 0.0004065;
-        b.vy = -0.0000;
-        b.c = Color.red;
-        bodies[2] = b;
+        body = new Body();
+        body.name = "mars";
+        body.mass = 0.002;
+        body.positionX = 0;
+        body.positionY = 80;
+        body.velocityX = 0.0004365;
+        body.velocityY = -0.0000;
+        body.color = Color.red;
+        bodies[2] = body;
 
-        b = new Body();
-        b.name = "jupiter";
-        b.m = 5;
-        b.x = 0;
-        b.y = 250;
-        b.sy = 250;
-        b.vx = 0.0002;
-        b.vy = 0;
-        b.c = Color.yellow;
-        bodies[3] = b;
+        body = new Body();
+        body.name = "jupiter";
+        body.mass = 8;
+        body.positionX = 0;
+        body.positionY = 250;
+        body.velocityX = 0.000245;
+        body.velocityY = 0;
+        body.color = Color.yellow;
+        bodies[3] = body;
 
-        b = new Body();
-        b.name = "saturn";
-        b.m = 3;
-        b.x = 0;
-        b.y = 500;
-        b.sy = 500;
-        b.vx = 0.0001415;
-        b.vy = 0;
-        b.c = Color.magenta;
-        bodies[4] = b;
-
+        body = new Body();
+        body.name = "saturn";
+        body.mass = 3;
+        body.positionX = 0;
+        body.positionY = 500;
+        body.velocityX = 0.000142;
+        body.velocityY = 0;
+        body.color = Color.magenta;
+        bodies[4] = body;
 
         for (int x=0; x<bodies.length; x++) {
-            bodies[x].others = bodies;
+            if (bodies[x] != null) {
+                bodies[x].otherBodies = bodies;
+            }
         }
-//        Body[] others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[0];
-//        others[1] = bodies[1];
-//        others[2] = bodies[2];
-//        others[3] = bodies[3];
-//        others[4] = bodies[4];
-//        bodies[1].others = others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[0];
-//        others[1] = bodies[1];
-//        others[2] = bodies[3];
-//        bodies[2].others = others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[1];
-//        others[1] = bodies[2];
-//        others[2] = bodies[3];
-//        bodies[0].others = others;
-//
-//        others= new Body[3];
-//        others[0] = bodies[0];
-//        others[1] = bodies[1];
-//        others[2] = bodies[2];
-//        bodies[3].others = others;
-
     }
-
 
     public ThreeBodies() {
-        super("Three Bodies Problem");
-
-        getContentPane().setBackground(Color.BLACK);
-        setSize(CX*2, CY*2);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        super("Three Bodies Problem", 680, 430);
     }
 
-    void drawRoute(Graphics g, double ax, double ay, double bx, double by, Color c) {
-        g.setColor(c);
-
-        long aX = CX + Math.round(ax);
-        long aY = CY - Math.round(ay);
-        long bX = CX + Math.round(bx);
-        long bY = CY - Math.round(by);
-
-        int iX = Math.toIntExact(aX);
-        int iY = Math.toIntExact(aY);
-        int jX = Math.toIntExact(bX);
-        int jY = Math.toIntExact(bY);
-
-        g.drawLine(iX, iY, jX, jY);
-        g.setColor(Color.white);
-        g.drawLine(iX, iY, iX, iY);
-
-    }
-
-    void drawGrid(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        g.setColor(Color.white);
-
-        g2d.draw(new Rectangle2D.Float(5, 25, (CX * 2f) - 15, (CY * 2f) - 30));
-
-        g.drawLine(5, CY, (CX * 2)-10, CY);
-        g.drawLine(CX, 25, CX, (CY * 2) - 5);
-
-        Shape theCircle = new Ellipse2D.Double(CX - bodies[3].sy, CY - bodies[3].sy, 2.0 * bodies[3].sy, 2.0 * bodies[3].sy);
+    Graphics2D drawGrid(Graphics g) {
+        Graphics2D g2d = super.drawGrid(g);
+        Shape theCircle = new Ellipse2D.Double(CENTER_X - 200, CENTER_Y - 200, 2.0 * 200, 2.0 * 200);
         g2d.draw(theCircle);
+        return g2d;
     }
 
     void drawOrbitStep(Graphics g, Body body, int loops) throws CrashException {
-        try {
-            double ax = body.x;
-            double ay = body.y;
-            double vx = body.vx;
-            double vy = body.vy;
-            double eX = body.bx;
-            double eY = body.by;
-            Body[] others = body.others;
+        if (body != null) {
+            try {
+                double ax = body.positionX;
+                double ay = body.positionY;
+                double vx = body.velocityX;
+                double vy = body.velocityY;
+                double eX = body.prePositionX;
+                double eY = body.prePositionY;
+                Body[] others = body.otherBodies;
 
-            if ((eX < 0) && (ax > 0)) {
-                body.round = body.round + 1;
-                log("  "+body.name+" - round  "+body.round+" : "+vx+"|"+vy+" - L:"+loops);
-            }
-            if ((eX > 0) && (ax < 0)) {
-                log("  opposite "+body.name+" - Y : "+ay);
-            }
-            body.bx = ax;
-            body.by = ay;
+                if ((eX < 0) && (ax > 0)) {
+                    body.round = body.round + 1;
+                    log("  " + body.name + " - round  " + body.round + " : " + vx + "|" + vy + " - L:" + loops);
+                }
+                if ((eX > 0) && (ax < 0)) {
+                    log("  opposite " + body.name + " - Y : " + ay);
+                }
+                body.prePositionX = ax;
+                body.prePositionY = ay;
 
 
-            double d = Math.sqrt((ax * ax) + (ay * ay));
-            if (d < 5) {
-                log("  "+body.name+"  Crash!....");
-                throw new CrashException(body.name);
-            }
-            double f;
-            f = -(k * sun) / (d * d);
+                double d = Math.sqrt((ax * ax) + (ay * ay));
+                if (d < 2) {
+                    log("  " + body.name + "  Crash!....");
+                    throw new CrashException(body.name);
+                }
+                double f;
+                f = -(gravitationalConstant * sunMass) / (d * d);
 
-            double fx;
-            double fy;
+                double fx;
+                double fy;
 
-            fy = f * (ay / d);
-            fx = f * (ax / d);
+                fy = f * (ay / d);
+                fx = f * (ax / d);
 
-            if (others != null) {
-                for (int i=0; i< others.length; i++) {
-                    if (others[i] != body) {
-                        double dx = ax - others[i].x;
-                        double dy = ay - others[i].y;
-                        d = Math.sqrt((dx * dx) + (dy * dy));
-                        if (d < 1) {
-                            log("  " + body.name + "  Crashed on " + others[i].name + " L:" + loops);
-                            throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
+                if (others != null) {
+                    for (int i = 0; i < others.length; i++) {
+                        if (others[i] != body) {
+                            if (others[i] != null) {
+                                double dx = ax - others[i].positionX;
+                                double dy = ay - others[i].positionY;
+                                d = Math.sqrt((dx * dx) + (dy * dy));
+                                if (d < 1) {
+                                    log("  " + body.name + "  Crashed on " + others[i].name + " L:" + loops);
+                                    throw new CrashException(body.name + " on " + others[i].name + " at loop " + loops);
+                                }
+
+                                f = -(gravitationalConstant * others[i].mass) / (d * d);
+
+                                fy = fy + f * (dy / d);
+                                fx = fx + f * (dx / d);
+                            }
                         }
-
-                        f = -(k * others[i].m) / (d * d);
-
-                        fy = fy + f * (dy / d);
-                        fx = fx + f * (dx / d);
                     }
                 }
+
+                body.positionX = ax + vx;
+                body.positionY = ay + vy;
+
+                body.velocityX = vx + fx;
+                body.velocityY = vy + fy;
+
+                graphUtils.drawRoute(g, body.positionX, body.positionY, body.prePositionX, body.prePositionY, body.color);
+            } catch (ArithmeticException ae) {
+                log(ae.getMessage());
             }
-
-            body.x = ax + vx;
-            body.y = ay + vy;
-
-            body.vx = vx + fx;
-            body.vy = vy + fy;
-
-            drawRoute(g, body.x, body.y, body.bx, body.by, body.c);
-        } catch (ArithmeticException ae) {
-            log(ae.getMessage());
         }
     }
 
-
-    void drawOrbit(Graphics g) {
+    void computeAndDrawOrbits(Graphics g) {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd - HH:mm:ss z");
         long startTime = System.currentTimeMillis();
         Date date = new Date(startTime);
-        System.out.println("Start : "+formatter.format(date));
+        log("Start : "+formatter.format(date));
         try {
             for (int i=0; i<loops; i++) {
                 for (int b = 0; b<bodies.length; b++) {
@@ -245,10 +176,10 @@ public class ThreeBodies extends JFrame {
         }
         long endTime = System.currentTimeMillis();
         date = new Date(endTime);
-        System.out.println("End : "+formatter.format(date));
+        log("End : "+formatter.format(date));
         long deltaTime = endTime - startTime;
         date = new Date(deltaTime);
-        System.out.println("Took : "+formatter.format(date));
+        log("Took : "+formatter.format(date));
     }
 
     @Override
@@ -256,13 +187,9 @@ public class ThreeBodies extends JFrame {
         setup();
         super.paint(g);
         drawGrid(g);
-        drawOrbit(g);
+        computeAndDrawOrbits(g);
         drawGrid(g);
         log("DONE");
-    }
-
-    private static void log(String msg) {
-        System.out.println(msg);
     }
 
     public static void main(String[] args) {

@@ -12,7 +12,7 @@ public class SolarSystem extends AbstractGraphMain {
 
     transient Body[] bodies;
 
-    int loops = 30000000;
+    int loops = 100000000;
 
     void setup() {
         bodies = new Body[15];
@@ -51,12 +51,12 @@ public class SolarSystem extends AbstractGraphMain {
 
         body = new Body();
         body.name = "A1";
-        body.mass = 0.00001;
+        body.mass = 0.0003;
         body.positionX = 0;
         body.positionY = 140;
-        body.velocityX = 0.000255;
+        body.velocityX = 0.00024;
         body.velocityY = 0;
-        body.color = Color.lightGray;
+        body.color = Color.white;
         bodies[3] = body;
 
         body = new Body();
@@ -94,8 +94,8 @@ public class SolarSystem extends AbstractGraphMain {
         body.name = "saturn";
         body.mass = 1.3;
         body.positionX = 0;
-        body.positionY = 480;
-        body.velocityX = 0.000148;
+        body.positionY = 420;
+        body.velocityX = 0.000158;
         body.velocityY = 0;
         body.color = Color.magenta;
         bodies[8] = body;
@@ -104,31 +104,31 @@ public class SolarSystem extends AbstractGraphMain {
         body = new Body();
         body.name = "C1";
         body.mass = 0.0000001;
-        body.positionX = 0;
-        body.positionY = 345;
-        body.velocityX = 0.0000265;
-        body.velocityY = 0;
-        body.color = Color.lightGray;
+        body.positionY = 0;
+        body.positionX = 345;
+        body.velocityY = -0.0000265;
+        body.velocityX = 0;
+        body.color = Color.orange;
         bodies[10] = body;
 
         body = new Body();
         body.name = "C2";
         body.mass = 0.0000001;
         body.positionX = 300;
-        body.positionY = 200;
+        body.positionY = 160;
         body.velocityX = 0.0000365;
-        body.velocityY = -0.00002;
+        body.velocityY = -0.000035;
         body.color = Color.lightGray;
         bodies[11] = body;
 
         body = new Body();
         body.name = "C3";
-        body.mass = 0.0000001;
-        body.positionX = 400;
+        body.mass = 0.0001;
+        body.positionX = 500;
         body.positionY = -200;
-        body.velocityX = 0.0000265;
-        body.velocityY = 0.000051;
-        body.color = Color.lightGray;
+        body.velocityX = 0.0000205;
+        body.velocityY = -0.000071;
+        body.color = Color.orange;
         bodies[12] = body;
 
         for (int x=0; x<bodies.length; x++) {
@@ -140,7 +140,7 @@ public class SolarSystem extends AbstractGraphMain {
 
 
     public SolarSystem() {
-        super("Solar System", 640, 430);
+        super("Solar System", 840, 550);
     }
 
     Graphics2D drawGrid(Graphics g) {
